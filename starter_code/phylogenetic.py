@@ -35,6 +35,6 @@ def load_blosum(filename):
                 costs[symbols[j]+symbols[i]] = c
     return costs
 
-costs = load_blosum("HW5_Phylogenetic/blosum62.bla")
-with open("HW5_Phylogenetic/blosum62.json", 'w') as fp:
+costs = load_blosum("./blosum62.bla")
+with open("./blosum62.json", 'w') as fp:
     json.dump(costs, fp, default=str)
