@@ -1,8 +1,10 @@
 import json
+BLOSUM_VERSION = 50
 
-nw_json_file_path = "./organisms_scores_blosum62.json"
+nw_json_file_path = f"./organisms_scores_blosum{BLOSUM_VERSION}.json"
 organisms_json_file_path = "../starter_code/organisms.json"
-newick_txt_file = "./tree62_newick.nw"
+newick_txt_file = f"./tree{BLOSUM_VERSION}_newick.nw"
+newick_distance_txt_file = f"./tree{BLOSUM_VERSION}_newick_with_distance.nw"
 
 with open(nw_json_file_path, 'r') as j:
     nw_scores = json.loads(j.read())
@@ -15,8 +17,9 @@ nw_scores_sorted = {k: v for k, v in sorted(nw_scores.items(), key=lambda item: 
 
 class Node:
 
-    def __init__(self, value, parent=None, root=None, left=None, right=None):
-        self.data = value
+    def __init__(self, name, value, parent=None, root=None, left=None, right=None):
+        self.name = name
+        self.value = value
         self.left = left
         self.right = right
         self.parent = parent
@@ -30,21 +33,21 @@ class Node:
 
 class Tree:
 
-    def createNode(self, data, parent=None, root=None, left=None, right=None):
+    def createNode(self, name, value, parent=None, root=None, left=None, right=None):
 
-        return Node(data, parent=parent, root=root, left=left, right=right)
+        return Node(name=name, value=value, parent=parent, root=root, left=left, right=right)
 
-    def insert(self, node, node_data, left_child, right_child):
+    def insert(self, node, node_name, node_value, left_child, right_child):
 
         #if tree is empty , return a root node
         if node is None:
-            return self.createNode(data=node_data, left=left_child, right=right_child)
+            return self.createNode(name=node_name, value=node_value, left=left_child, right=right_child)
 
         return node
     
     def change_root_for_all_children(self, current_node, new_root, fast_track):
         current_node.set_parent(new_root)
-        fast_track[current_node.data] = new_root
+        fast_track[current_node.name] = new_root
         if current_node.left:
             fast_track = self.change_root_for_all_children(current_node.left, new_root, fast_track)
         if current_node.right:
@@ -52,20 +55,36 @@ class Tree:
         
         return fast_track
 
-    def make_newick(self, node):
+    def make_newick(self, node, distance=False):
         newick = ""
-        newick = self.traverse_newick(node, newick)
+        if distance:
+            newick = self.traverse_newick_with_distance(node, newick)
+        else:
+            newick = self.traverse_newick(node, newick)
         return f"{newick};"
-
+    
     def traverse_newick(self, root_node, newick):
         if root_node.left and not root_node.right:
-            newick = f"(,{self.traverse_newick(root_node.left, newick)}){root_node.data}"
+            newick = f"(,{self.traverse_newick(root_node.left, newick)}){root_node.name}"
         elif not root_node.left and root_node.right:
-            newick = f"({self.traverse_newick(root_node.right, newick)},){root_node.data}"
+            newick = f"({self.traverse_newick(root_node.right, newick)},){root_node.name}"
         elif root_node.left and root_node.right:
-            newick = f"({self.traverse_newick(root_node.right, newick)},{self.traverse_newick(root_node.left, newick)}){root_node.data}"
+            newick = f"({self.traverse_newick(root_node.right, newick)},{self.traverse_newick(root_node.left, newick)}){root_node.name}"
         elif not root_node.left and not root_node.right:
-            newick = f"{root_node.data}"
+            newick = f"{root_node.name}"
+        else:
+            pass
+        return newick
+
+    def traverse_newick_with_distance(self, root_node, newick):
+        if root_node.left and not root_node.right:
+            newick = f"(,{self.traverse_newick_with_distance(root_node.left, newick)}):{root_node.value}"
+        elif not root_node.left and root_node.right:
+            newick = f"({self.traverse_newick_with_distance(root_node.right, newick)},):{root_node.value}"
+        elif root_node.left and root_node.right:
+            newick = f"({self.traverse_newick_with_distance(root_node.right, newick)},{self.traverse_newick_with_distance(root_node.left, newick)}):{root_node.value}"
+        elif not root_node.left and not root_node.right:
+            newick = f"{root_node.name}"
         else:
             pass
         return newick
@@ -106,17 +125,21 @@ union_find_structure = UnionFind(organisms.keys())
 
 treeOfLife = Tree()
 
+max_distance = nw_scores_sorted[list(nw_scores_sorted.keys())[0]]
+max_distance = max_distance + 50
+
 def init_tracking_tree(init_dict, main_tree):
     tracking_dict = {}
     keys = list(init_dict.keys())
     for key in keys:
-        key_node = main_tree.createNode(data=key)
+        key_node = main_tree.createNode(name=key, value=max_distance)
         tracking_dict[key] = key_node
 
     return tracking_dict
 
 tracking_tree = init_tracking_tree(organisms, treeOfLife)
 
+node_counter = 1
 for k, v in nw_scores_sorted.items():
     species = k.split("_")
     specie1 = species[0]
@@ -128,11 +151,17 @@ for k, v in nw_scores_sorted.items():
 
     if species1_root!=species2_root:
         union_find_structure.unite(specie1, specie2)
-        new_parent_node = treeOfLife.createNode(data = v, left=species1_root_node, right=species2_root_node)
+        node_counter = node_counter+1
+        new_parent_node = treeOfLife.createNode(name = v, value = v, left=species1_root_node, right=species2_root_node)
         tracking_tree = treeOfLife.change_root_for_all_children(current_node=species1_root_node, new_root=new_parent_node, fast_track = tracking_tree)
         tracking_tree = treeOfLife.change_root_for_all_children(current_node=species2_root_node, new_root=new_parent_node, fast_track = tracking_tree)
 
 
 tree_newick = treeOfLife.make_newick(new_parent_node)
+tree_newick_with_distance = treeOfLife.make_newick(new_parent_node, distance=True)
+print(f"Newick with distance {tree_newick_with_distance}")
+
 with open(newick_txt_file, 'w') as f:
     f.write(tree_newick)
+with open(newick_distance_txt_file, 'w') as f:
+    f.write(tree_newick_with_distance)
