@@ -147,19 +147,17 @@ def create_tree(tree:Tree, nw_scores_sorted:dict, tracking_cache:dict, union_fin
 
 def get_leaf_nodes(root):
     if root.is_leaf:
-        print(root.name, 
-              end = " ")
-        return
+        return [root.name]
 
-    # If left child exists, 
-    # check for leaf recursively
+    my_leafs = []
+
     if root.left:
-        get_leaf_nodes(root.left)
+        my_leafs = my_leafs + get_leaf_nodes(root.left)
 
-    # If right child exists, 
-    # check for leaf recursively
     if root.right:
-        get_leaf_nodes(root.right)
+        my_leafs  = my_leafs + get_leaf_nodes(root.right)
+
+    return my_leafs
 
 
 def generate_clusters(tree_root:Node, threshold:int, all_clusters:list):
@@ -172,7 +170,6 @@ def generate_clusters(tree_root:Node, threshold:int, all_clusters:list):
     else:
         # If the threshold is exceeded, create cluster starting from that node
         cluster = get_leaf_nodes(tree_root)
-        print(f"------------------------\n")
         all_clusters.append(cluster)
     return all_clusters
 
@@ -207,6 +204,6 @@ if __name__ == "__main__":
     with open(newick_distance_txt_file, 'w') as f:
         f.write(tree_newick_with_distance)
 
-    clusters = generate_clusters(root, 1350, [])
+    clusters = generate_clusters(root, 1260, [])
     print(clusters)
     # print(clean_clusters(clusters))
