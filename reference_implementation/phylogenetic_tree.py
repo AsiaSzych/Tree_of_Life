@@ -1,5 +1,5 @@
 import json
-BLOSUM_VERSION = 50
+BLOSUM_VERSION = 62
 
 nw_json_file_path = f"./organisms_scores_blosum{BLOSUM_VERSION}.json"
 organisms_json_file_path = "../starter_code/organisms.json"
@@ -8,13 +8,14 @@ newick_distance_txt_file = f"./tree{BLOSUM_VERSION}_newick_with_distance.nw"
 
 class Node:
 
-    def __init__(self, name, value, parent=None, root=None, left=None, right=None):
+    def __init__(self, name, value, parent=None, root=None, left=None, right=None, is_leaf=False):
         self.name = name
         self.value = value
         self.left = left
         self.right = right
         self.parent = parent
         self.root = root
+        self.is_leaf = is_leaf
     
     def set_root(self, root):
         self.root = root
@@ -24,9 +25,9 @@ class Node:
 
 class Tree:
 
-    def createNode(self, name, value, parent=None, root=None, left=None, right=None):
+    def createNode(self, name, value, parent=None, root=None, left=None, right=None, is_leaf=False):
 
-        return Node(name=name, value=value, parent=parent, root=root, left=left, right=right)
+        return Node(name=name, value=value, parent=parent, root=root, left=left, right=right, is_leaf=is_leaf)
 
     def insert(self, node, node_name, node_value, left_child, right_child):
 
@@ -110,14 +111,14 @@ class UnionFind:
         self.parent[irep] = jrep
 
 
-def init_tracking_cache(init_dict, main_tree, nw_scores_sorted):
+def init_tracking_cache(init_dict:dict, main_tree:Tree, nw_scores_sorted:dict):
 
     max_distance = nw_scores_sorted[list(nw_scores_sorted.keys())[0]]
     max_distance = max_distance + 50
     tracking_dict = {}
     keys = list(init_dict.keys())
     for key in keys:
-        key_node = main_tree.createNode(name=key, value=max_distance)
+        key_node = main_tree.createNode(name=key, value=max_distance, is_leaf=True)
         tracking_dict[key] = key_node
 
     return tracking_dict
@@ -144,6 +145,45 @@ def create_tree(tree:Tree, nw_scores_sorted:dict, tracking_cache:dict, union_fin
 
     return tree, new_parent_node, tracking_cache, union_find
 
+def get_leaf_nodes(root):
+    if root.is_leaf:
+        print(root.name, 
+              end = " ")
+        return
+
+    # If left child exists, 
+    # check for leaf recursively
+    if root.left:
+        get_leaf_nodes(root.left)
+
+    # If right child exists, 
+    # check for leaf recursively
+    if root.right:
+        get_leaf_nodes(root.right)
+
+
+def generate_clusters(tree_root:Node, threshold:int, all_clusters:list):
+    if not tree_root:
+        return
+    elif tree_root.value < threshold:
+        #If the threshold is not exceeded iteratively look starting from children
+        generate_clusters(tree_root.left, threshold, all_clusters)
+        generate_clusters(tree_root.right, threshold, all_clusters)
+    else:
+        # If the threshold is exceeded, create cluster starting from that node
+        cluster = get_leaf_nodes(tree_root)
+        print(f"------------------------\n")
+        all_clusters.append(cluster)
+    return all_clusters
+
+
+def clean_clusters(clusters:list):
+    clean_clusters = []
+    for i in range(len(clusters)):
+        new_cluster = [node.name for node in clusters[i]]
+        clean_clusters.append(new_cluster)
+    return clean_clusters
+
 if __name__ == "__main__":
 
     with open(nw_json_file_path, 'r') as j:
@@ -166,3 +206,7 @@ if __name__ == "__main__":
         f.write(tree_newick)
     with open(newick_distance_txt_file, 'w') as f:
         f.write(tree_newick_with_distance)
+
+    clusters = generate_clusters(root, 1350, [])
+    print(clusters)
+    # print(clean_clusters(clusters))
