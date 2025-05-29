@@ -4,12 +4,15 @@
 2 paths to json files - reference file and testing file, both contaiing calculated Needleman-Wush scores for all pair of organisms.
 
 ### Input format 
+```
 {
     "Wild boar_Horse": 1718,
     "Wild boar_White-tailed deer": 1710, 
     "Wild boar_Reindeer": 1707, 
     "Wild boar_Domestic Yak": 1713
 }
+```
+
 Examplary file: `../reference_implementation/organisms_scores_blosum62.json`
 
 
@@ -66,6 +69,7 @@ Compare is the trees are the same, for example if they have the same amount of n
 2 paths to json files - reference file and testing file, both contaiing calulated cluster for given thresholds.
 
 ### Input format
+```
 {
     "1100": [
         [
@@ -94,6 +98,7 @@ Compare is the trees are the same, for example if they have the same amount of n
         ]
     ]
 }
+```
 
 Exemplary file: `../reference_implementation/clusters_for_blosum50.json`
 
