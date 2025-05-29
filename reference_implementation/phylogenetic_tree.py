@@ -5,6 +5,9 @@ nw_json_file_path = f"./organisms_scores_blosum{BLOSUM_VERSION}.json"
 organisms_json_file_path = "../starter_code/organisms.json"
 newick_txt_file = f"./tree{BLOSUM_VERSION}_newick.nw"
 newick_distance_txt_file = f"./tree{BLOSUM_VERSION}_newick_with_distance.nw"
+thresholds_file_path=  "../starter_code/thresholds.txt"
+clusters_output_path = f"./clusters_for_blosum{BLOSUM_VERSION}.json"
+
 
 class Node:
 
@@ -173,14 +176,6 @@ def generate_clusters(tree_root:Node, threshold:int, all_clusters:list):
         all_clusters.append(cluster)
     return all_clusters
 
-
-def clean_clusters(clusters:list):
-    clean_clusters = []
-    for i in range(len(clusters)):
-        new_cluster = [node.name for node in clusters[i]]
-        clean_clusters.append(new_cluster)
-    return clean_clusters
-
 if __name__ == "__main__":
 
     with open(nw_json_file_path, 'r') as j:
@@ -204,6 +199,14 @@ if __name__ == "__main__":
     with open(newick_distance_txt_file, 'w') as f:
         f.write(tree_newick_with_distance)
 
-    clusters = generate_clusters(root, 1260, [])
-    print(clusters)
-    # print(clean_clusters(clusters))
+
+    with open(thresholds_file_path, 'r') as f:
+        thresholds = [int(line) for line in f]
+
+    clusters_dict = {}
+    for threshold in thresholds:
+        clusters = generate_clusters(root, threshold, [])
+        clusters_dict[threshold] = clusters
+
+    with open(clusters_output_path, 'w') as j:
+        json.dump(clusters_dict, j)
