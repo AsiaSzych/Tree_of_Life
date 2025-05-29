@@ -1,4 +1,4 @@
-# Compare Needleman-Wush scores
+# Case #1 Compare Needleman-Wush scores
 
 ### Input
 2 paths to json files - reference file and testing file, both contaiing calculated Needleman-Wush scores for all pair of organisms.
@@ -16,7 +16,7 @@ Examplary file: `../reference_implementation/organisms_scores_blosum62.json`
 ### Task
 Check if testing file contains all the same records as reference file. Both key and values need to match. Order doesn't matter.
 
-# Validate newick format 
+# Case #2 Validate newick format 
 
 ### Input 
 Path to test file containg tree saved in newick format (.nw extension)
@@ -42,7 +42,7 @@ Check if given files contains string that represent a valid newick format.
 * https://github.com/ila/Newick-validator - tool for faster validation
 * https://etetoolkit.org/docs/2.3/tutorial/tutorial_trees.html#reading-newick-trees - toolkit for working with trees, if it is possible to pass newick string to tree class it means that the string is valid, but it's important to take care of *format* parameter
 
-# Compare trees based on newick
+# Case #3 Compare trees based on newick
 
 ### Input
 2 paths to files - reference file and testing file, both containing string in newick format representing tree
@@ -60,7 +60,7 @@ Compare is the trees are the same, for example if they have the same amount of n
 * https://etetoolkit.org/docs/2.3/tutorial/tutorial_trees.html#comparing-trees - compare method from the ete toolkit, load boths trees and run it
 * https://eti.pg.edu.pl/TreeCmp/WEB - PG tool for online tree comparison
 
-# Compare created clusters
+# Case #4 Compare created clusters
 
 ### Input
 2 paths to json files - reference file and testing file, both contaiing calulated cluster for given thresholds.
