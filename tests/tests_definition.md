@@ -1,7 +1,21 @@
+# TESTS
+All test that should be passed in orderd to declare implementation of the task as successfull are inlcuded in the `all_tests.py` file. This file should be run using pytest library: 
+``` pytest all_tests.py```
+
+It inlcudes 7 tests:
+1. compare needleman-wush scores - described in details below in **case #1** section
+2. check valid newick structure, with nodes only - described in details below in **case #2** section
+3. check valid newick structure, when distances are included - described in details below in **case #2** section
+4. compare two trees, with nodes only - described in details below in **case #3** section
+5. compare two trees, when distances are included - described in details below in **case #3** section
+6. compare clusters based on thresholds - described in details below in **case #4** section 
+7. check if png file to drawing of the tree exists 
+
+
 # Case #1 Compare Needleman-Wush scores
 
 ### Input
-2 paths to json files - reference file and testing file, both contaiing calculated Needleman-Wush scores for all pair of organisms.
+2 paths to json files - reference file and testing file, both containing calculated Needleman-Wush scores for all pair of organisms.
 
 ### Input format 
 ```
@@ -83,6 +97,7 @@ output
 Passed: 2; Failed: 0; Total: 2
 ``` 
 
+
 # Case #3 Compare trees based on newick
 
 ### Input
@@ -127,6 +142,7 @@ Trees are not the same!
 --- Summary ---
 Passed: 1; Failed: 2; Total: 3
 ```
+
 
 # Case #4 Compare created clusters
 

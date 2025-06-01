@@ -45,3 +45,8 @@ def test_compare_clusters():
     expected_dict = read_file(expected_file)
     actual_dict = read_file(actual_file)
     assert compare_clusters(expected=expected_dict, actual=actual_dict)=={}
+
+def test_check_png_file_path_exists():
+    file_name = f"phylogenetic_tree_{BLOSUM}.png"
+    actual_file = os.path.join(actual_folder, file_name)    
+    assert os.path.exists(actual_file)
