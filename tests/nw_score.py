@@ -7,7 +7,7 @@ def read_file(path: str) -> dict:
         return json.load(input_file)
 
 
-def compare(expected: dict, actual: dict):
+def compare_dicts(expected: dict, actual: dict):
     differences = {}
     for k_expected in expected:
         if k_expected in actual and actual[k_expected] != expected[k_expected]:
@@ -38,7 +38,7 @@ def main():
         
         print('----------------------------------')
         print(f'Comparing expected {args.expected} with actual {actual_input}')
-        differences = compare(expected, actual)
+        differences = compare_dicts(expected, actual)
 
         if differences:
             print('The scores are not the same!')

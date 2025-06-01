@@ -1,6 +1,13 @@
 import argparse 
 from ete3 import Tree
 
+def check_valid_newick(file_path):
+    try:
+        Tree(file_path, format=0).write(format=1)
+        return True
+    except:
+        return False
+
 
 def main():
     parser = argparse.ArgumentParser(description='Validates if the files contains valid tree encoded in Newick format.')
@@ -11,11 +18,11 @@ def main():
     failed = 0
 
     for tree_file in args.tree:
-        try:
-            Tree(tree_file, format=0).write(format=1)
+
+        if check_valid_newick(tree_file):
             print(f"[{tree_file}] -> valid")
             passed += 1
-        except:
+        else:
             print(f"[{tree_file}] -> not valid!")
             failed += 1
     print("--- Summary ---")
