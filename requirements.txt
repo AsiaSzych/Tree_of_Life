@@ -3,3 +3,5 @@ numpy==2.2.5
 PyQt5==5.15.11
 setuptools==65.5.0
 six==1.17.0
+legacy-cgi==2.6.3
+pytest==8.3.5
