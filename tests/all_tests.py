@@ -8,7 +8,7 @@ BLOSUM = 62
 expected_folder = "../reference_implementation"
 actual_folder = "../reference_implementation"
 
-def test_compare_needleman_wush_score():
+def test_compare_needleman_wunsch_score():
     file_name = f"organisms_scores_blosum{BLOSUM}.json"
     expected_file = os.path.join(expected_folder, file_name)
     actual_file = os.path.join(actual_folder, file_name)                       

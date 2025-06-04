@@ -3,7 +3,7 @@ All test that should be passed in orderd to declare implementation of the task a
 ``` pytest all_tests.py```
 
 It inlcudes 7 tests:
-1. compare needleman-wush scores - described in details below in **case #1** section
+1. compare needleman-wunsch scores - described in details below in **case #1** section
 2. check valid newick structure, with nodes only - described in details below in **case #2** section
 3. check valid newick structure, when distances are included - described in details below in **case #2** section
 4. compare two trees, with nodes only - described in details below in **case #3** section
@@ -12,10 +12,10 @@ It inlcudes 7 tests:
 7. check if png file to drawing of the tree exists 
 
 
-# Case #1 Compare Needleman-Wush scores
+# Case #1 Compare Needleman-Wunsch scores
 
 ### Input
-2 paths to json files - reference file and testing file, both containing calculated Needleman-Wush scores for all pair of organisms.
+2 paths to json files - reference file and testing file, both containing calculated Needleman-Wunsch scores for all pair of organisms.
 
 ### Input format 
 ```

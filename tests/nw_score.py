@@ -23,7 +23,7 @@ def compare_dicts(expected: dict, actual: dict):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Needleman-Wush scores compoarator. Gets two JSON files with the ogranisms paris and their scores and compare them with each other.')
+    parser = argparse.ArgumentParser(description='Needleman-Wunsch scores compoarator. Gets two JSON files with the ogranisms paris and their scores and compare them with each other.')
     parser.add_argument('-e', '--expected', help='JSON file with the expected results for organisms pairs and their scores.', required=True)
     parser.add_argument('-a', '--actual', nargs='+', help='JSON file wit the actual results that will be tested against the baseline. You can pass multiple files to compare all of them with the expected one', required=True)
     args = parser.parse_args()

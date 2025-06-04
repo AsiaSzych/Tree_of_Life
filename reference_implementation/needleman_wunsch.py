@@ -11,7 +11,7 @@ with open(blosum_json_file_path, 'r') as j:
 with open(organisms_json_file_path, 'r') as j:
     organisms = json.loads(j.read())
 
-def needleman_wush(seq1: str, seq2:str, switch_cost:dict):
+def needleman_wunsch(seq1: str, seq2:str, switch_cost:dict):
     # algorithm adapted from https://bostjan-cigan.medium.com/using-the-needleman-wunsch-algorithm-to-draw-evolutionary-trees-90d9db149413
     m = len(seq1)+1 
     n = len(seq2)+1 
@@ -41,7 +41,7 @@ all_scores = {}
 for pair in all_pairs:
     seq1 = organisms.get(pair[0])
     seq2 = organisms.get(pair[1])
-    NW = needleman_wush(seq1, seq2, blosum)
+    NW = needleman_wunsch(seq1, seq2, blosum)
     all_scores[pair[0]+"_"+pair[1]] = int(NW)
 
 with open("./organisms_scores_blosum62.json", 'w') as j:
