@@ -1,6 +1,7 @@
 import os
 import json
 import uuid
+import yaml
 from loguru import logger
 from langchain_core.chat_history import InMemoryChatMessageHistory
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder, HumanMessagePromptTemplate
@@ -11,7 +12,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.runnables.history import RunnableWithMessageHistory
 
 
-logger.info("Set up environment variables with keys to APIs")
+logger.info("Set API keys as environment variables")
 with open("./api_keys.json", 'r') as f:
     api_keys = json.loads(f.read())
 
@@ -39,12 +40,12 @@ class Model:
 
 def read_prompts(path_to_file:str):
     logger.info(f"Reading prompts from file {path_to_file}")
-    prompts = [
-    "Make a function that implements a bubble sort algorithm.",
-    "Make a function that reads data from a CSV file containing numbers.",
-    "Make a script that reads CSV and sorts numbers using previously implemented functions."
-    ]
-    return prompts
+    with open(path_to_file, "r") as f:
+        prompt_data = yaml.safe_load(f)
+    prompt_list=[]
+    for task in prompt_data["tasks"]:
+        prompt_list.append(task["text"])
+    return prompt_list
 
 def run_conversation(llm:Model, prompts:list):
     
@@ -91,11 +92,11 @@ if __name__=="__main__":
     gpt = Model(short_name="gpt-4.1",model_name="gpt-4.1", provider="openai") #https://platform.openai.com/docs/models/gpt-4.1
     deepseek = Model(short_name="deepseek-reasoner",model_name="deepseek-reasoner", provider="deepseek") #https://api-docs.deepseek.com/
     claude = Model(short_name="claude-opus-4",model_name="claude-opus-4-20250514", provider="anthropic") #https://docs.anthropic.com/en/docs/about-claude/models/overview
-    gemini = Model(short_name="gemini-2.5-flash", model_name="gemini-2.5-flash-preview-05-20", provider="google") #https://ai.google.dev/gemini-api/docs/models
+    # gemini = Model(short_name="gemini-2.5-flash", model_name="gemini-2.5-flash-preview-05-20", provider="google") #https://ai.google.dev/gemini-api/docs/models
 
-    prompts = read_prompts("test")
+    prompts = read_prompts("./prompts_final.yaml")
 
-    for llm in [gemini]:
+    for llm in [claude]:
         logger.info(f"Start flow for {llm.model_name}, try 1")
         output = run_conversation(llm, prompts)
         save_results(llm, "python", 1, output)
