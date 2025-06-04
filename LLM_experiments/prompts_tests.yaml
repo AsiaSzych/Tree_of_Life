@@ -1,0 +1,27 @@
+tasks:
+  - name: bubble_sort
+    versions:
+      - version: verbose
+        text: |
+          Please implement a bubble sort function in Python.
+          Provide comments and test examples.
+      - version: concise
+        text: Implement bubble sort in Python.
+
+  - name: csv_reader
+    versions:
+      - version: verbose
+        text: |
+          Write a Python function that reads a CSV file and extracts numeric values.
+          Include error handling and docstrings.
+      - version: concise
+        text: Read numeric values from a CSV file in Python.
+
+  - name: full_script
+    versions:
+      - version: verbose
+        text: |
+          Combine the previous two tasks into a script that reads numbers from CSV
+          and sorts them using bubble sort. Include input/output examples.
+      - version: concise
+        text: Read numbers from CSV and sort them using bubble sort.
