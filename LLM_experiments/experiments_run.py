@@ -80,7 +80,7 @@ def run_conversation(llm:Model, prompts:list):
     return markdown_output
 
 def save_results(llm:Model, language:str, try_number:int, content:list):
-    file_path = f"conversation_{llm.model_name}_{language}_try_{try_number}.md"
+    file_path = f"./results/conversation_{llm.model_name}_{language}_try_{try_number}.md"
     logger.info(f"Saving results to file {file_path}")
     with open(file_path, "w", encoding="utf-8") as f:
         f.write("\n".join(content))
