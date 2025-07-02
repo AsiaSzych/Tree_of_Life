@@ -6,7 +6,7 @@ from cluster_compare import compare_clusters, read_file
 
 BLOSUM = 62
 expected_folder = "../reference_implementation"
-actual_folder = "../LLM_experiments/test_results/test_solution_version_GoalInstructionOutput_v0/results"
+actual_folder = "../LLM_experiments/test_results/test_solution_version_GoalInstructionOutput_v1/output"
 
 def test_compare_needleman_wunsch_score():
     file_name = f"organisms_scores_blosum{BLOSUM}.json"
