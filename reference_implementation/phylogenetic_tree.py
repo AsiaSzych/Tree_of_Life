@@ -3,8 +3,8 @@ BLOSUM_VERSION = 62
 
 nw_json_file_path = f"./organisms_scores_blosum{BLOSUM_VERSION}.json"
 organisms_json_file_path = "../starter_code/organisms.json"
-newick_txt_file = f"./tree{BLOSUM_VERSION}_newick.nw"
-newick_distance_txt_file = f"./tree{BLOSUM_VERSION}_newick_with_distance.nw"
+newick_txt_file = f"./tree_blosum{BLOSUM_VERSION}_newick.nw"
+newick_distance_txt_file = f"./tree_blosum{BLOSUM_VERSION}_newick_with_distance.nw"
 thresholds_file_path=  "../starter_code/thresholds.txt"
 clusters_output_path = f"./clusters_for_blosum{BLOSUM_VERSION}.json"
 
@@ -142,7 +142,7 @@ def create_tree(tree:Tree, nw_scores_sorted:dict, tracking_cache:dict, union_fin
         if species1_root!=species2_root:
             union_find.unite(specie1, specie2)
             node_counter = node_counter+1
-            new_parent_node = tree.createNode(name = v, value = v, left=species1_root_node, right=species2_root_node)
+            new_parent_node = tree.createNode(name = '', value = v, left=species1_root_node, right=species2_root_node)
             tracking_cache = tree.change_root_for_all_children(current_node=species1_root_node, new_root=new_parent_node, fast_track = tracking_cache)
             tracking_cache = tree.change_root_for_all_children(current_node=species2_root_node, new_root=new_parent_node, fast_track = tracking_cache)
 
