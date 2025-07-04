@@ -15,7 +15,7 @@ tasks:
           Instruction:  I need to implement a new project from the beginning to end and I will need your help. Through this session, you should act as a senior java developer. I will divide my inputs into descriptions of the task, and requests for code generation. You should always carefully analyze the requirements and constrains. 
           Expected Output: Confirmation of specified role. Apply it to every further part of the conversation.
  
-  - name: Prject introduction
+  - name: Project introduction
     versions:
       - version: GoalInstructionOutputPython
         text: |
@@ -99,24 +99,23 @@ tasks:
           Keep in mind that this is only the first task of the project. These scores will be later used for other alorithms, like tree creation, so they should be stored in a structure with fast access.  
           Expected Output: A code that will provide solution for the described task. Divide provided code into necessary files and create as many functions as needed to ensure readability and maintainability. Add a short description of what generated code does.
 
-
   - name: Needleman-Wunsch algorithm save results 
     versions:
       - version: GoalInstructionOutputPython
         text: |
           Goal: Generaring a code for saving results of the first task to the file
-          Instruction: I need one modification to this code. Beside having Needleman-Wunsch scores calculated and stored inside the code, I also need to have them saved on the file system. Prepare a modification that allows for saving the calculated scores in a json file. The file should represent a key-value structure, where keys are created by concatenating names of the species in the pair using “_”, while value should be the Needleman-Wunsch algorithm result as a integer. 
+          Instruction: I need one modification to this code. Beside having Needleman-Wunsch scores calculated and stored during the run, I also need to have them saved on the file system. Prepare a modification that allows for saving the calculated scores in a json file. The file should represent a key-value structure, where keys are created by concatenating names of the species in the pair using “_”, while value should be the Needleman-Wunsch algorithm result as a integer. 
           As I mentioned previously, this should be albe to execute using two different "blosumXX.json" files on input. Respectively to which file is used, save the results to file called "organisms_scores_bloumXX.json". Keep in mind that this is only intermediate step, not a final solution yet. 
           Expected Output: Modification of previously generated code to include additional requirement. Make sure to divide logic into necessary files and shortly explain what generated code does.
       - version: FreeText
         text: |
-          Thanks! Now I need one modification to this code. Beside having Needleman-Wunsch scores calculated and stored inside the code, I also need to have them saved on the file system. Please add a modification that allows saving the calculated scores in a json file. The file should represent a key-value structure, where keys are created by concatenating names of the species in the pair using “_”, while value should be the Needleman-Wunsch algorithm result. 
+          Thanks! Now I need one modification to this code. Beside having Needleman-Wunsch scores calculated and stored during the run, I also need to have them saved on the file system. Please add a modification that allows saving the calculated scores in a json file. The file should represent a key-value structure, where keys are created by concatenating names of the species in the pair using “_”, while value should be the Needleman-Wunsch algorithm result. 
           As I mentioned previously, this should be albe to execute using two different "blosumXX.json" files on input. Respectively to which file is used, save the results to file called "organisms_scores_bloumXX.json".
           Still keep in mind that this is only intermediate step, not a final solution yet.  
       - version: GoalInstructionOutputJava
         text: |
           Goal: Generaring a code for saving results of the first task to the file
-          Instruction: I need one modification to this code. Beside having Needleman-Wunsch scores calculated and stored inside the code, I also need to have them saved on the file system. Prepare a modification that allows for saving the calculated scores in a json file. The file should represent a key-value structure, where keys are created by concatenating names of the species in the pair using “_”, while value should be the Needleman-Wunsch algorithm result as a integer. 
+          Instruction: I need one modification to this code. Beside having Needleman-Wunsch scores calculated and stored during the run, I also need to have them saved on the file system. Prepare a modification that allows for saving the calculated scores in a json file. The file should represent a key-value structure, where keys are created by concatenating names of the species in the pair using “_”, while value should be the Needleman-Wunsch algorithm result as a integer. 
           As I mentioned previously, this should be albe to execute using two different "blosumXX.json" files on input. Respectively to which file is used, save the results to file called "organisms_scores_bloumXX.json". Keep in mind that this is only intermediate step, not a final solution yet. 
           Expected Output: Modification of previously generated code to include additional requirement. Make sure to divide logic into necessary files and shortly explain what generated code does.
 
