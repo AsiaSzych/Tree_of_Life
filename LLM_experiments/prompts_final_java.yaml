@@ -9,7 +9,7 @@ tasks:
     text: |
       Goal: Setting up a background for further conversation. 
       Instruction: I have a new project on my hands. I need to prepare a clustering algorithm for quite a specific input data. 
-      My input consists of DNA sequences for different species, for which I need to calculate the similarity using Needleman-Wunsch algorithm and the predefined dictionary of swapping scores. Having the scores for all pairs I need to build phylogenetic tree of species and draw a dendrogram representing this tree. At the end, I need to be able to calculate clusters of species depending on different thresholds. 
+      My input consists of amino acid sequences for different species, for which I need to calculate the similarity using Needleman-Wunsch algorithm and the predefined dictionary of swapping scores. Having the scores for all pairs I need to build phylogenetic tree of species and draw a dendrogram representing this tree. At the end, I need to be able to calculate clusters of species depending on different thresholds. 
       Output expectation: Summary of provided description and prepare a short outline of the most important aspects of the project.  
 
   - name: Technical requirements
@@ -18,20 +18,20 @@ tasks:
       Instruction: I need this program to be written in Java 21, but you can choose necessary libraries freely. I will be using Maven 3.9 to build a project. If anything is saved to the file system or read from it, you should start all the paths from current directory and eventually use subfolders. I need my code to follow Google Java Style Guide formatting standards. When providing me a code samples or scritps, always include name of the file in which the code should be put. This needs to be a production ready project, so I need to have clean and efficient code.
       Expected Output: Confirmation of specified requirement. Apply it to every code generated in further parts of conversation, but do not generate any code for this answer.
 
-   - name: Needleman-Wunsch algorithm - explanation
+  - name: Needleman-Wunsch algorithm - explanation
     text: |
       Goal: Understanding the first task of the project and requirements regarding its completion. 
-      Instruction: The first task is a calculation of Needleman-Wunsch algorithm. As you probably know, it is an algorithm often used to align protein or nucleotide sequences. We will be using it for a similar purpose, aligning DNA sequences.
-      We have two input files. The first one is named "organisms.json" and it has a key-value structure with name of the species as a key, and its DNA string as a value, both key and value are of type string. Example structure of the "organism.json" file: ``` {"Wild boar": "MTHQTHAYHMVNPSPWPLTGALSALLMTSGL", "Horse": "MTHQTHAYHMVNPSPWPLTGALSALLMT"} ``` .
+      Instruction: The first task is a calculation of Needleman-Wunsch algorithm. As you probably know, it is an algorithm often used to align protein or nucleotide sequences. We will be using it exactly for this purpose - aligning amino acid sequences.
+      We have two input files. The first one is named "organisms.json" and it has a key-value structure with name of the species as a key, and its amino acid squence string as a value, both key and value are of type string. Example structure of the "organism.json" file: ``` {"Wild boar": "MTHQTHAYHMVNPSPWPLTGALSALLMTSGL", "Horse": "MTHQTHAYHMVNPSPWPLTGALSALLMT"} ``` .
       The second one is called “blosumXX.json”, where "XX" will be either 50 or 62 representing blosum50 and blosum62 matrices, respectively. This will be used as a dictionary of switching scores for Needleman-Wunsch algorithm. This file also represents a key-value structure based on BLOSUM table, which represents the substitution matrix used for sequence alignment. In the file, key is of type string and value is numerical. Exemplary file structure looks like: ```{“a”: -1, “b”: -2, “ab”: -3, “ba": -3, “aa”: 2, “bb”: 3} ```. A single character key represents the cost of deleting that character, while a key of two concatenated characters represents the cost of substituting one character for the other. Example above says that: deleting 'a' cost -1; deleting 'b' cost -2; swapping 'a' for 'b' or 'b' for 'a' cost -3; matching 'a' to 'a' scores +2; matching 'b' to 'b' scores +3.
-      In my project I will need to calculate the Needleman-Wunsch score of aligning two DNA sequences, for many pair of species. Also, I will be using two different types of BLOSUM tables: BLOSUM50 and BLOSUM62. Created code can assume, that during one run only one type of blosum matrix will be used, but should be prepare to change the type of used matrix between different runs.
+      In my project I will need to calculate the Needleman-Wunsch score of aligning two sequences, for many pair of species. Also, I will be using two different types of BLOSUM tables: BLOSUM50 and BLOSUM62. Created code can assume, that during one run only one type of blosum matrix will be used, but should be prepare to change the type of used matrix between different runs.
       Expected Output: Summary of the information you've gotten about this task. Do not generate any code yet, just provide a summary of what you understand from the description. 
 
   - name: Needleman-Wunsch algorithm - implementation
     text: |
       Goal: Generating a code solution for the first task in the project.
-      Instruction: Provide a code that will read the data from both input files and for each pair of species from “organism.json” calculate a Needleman-Wunsch similarity score between their DNAs strings, those results should never include decimal point so be sure to treat them as integers. Scores and penalties for matching and deleting should be assigned accordign to the data in “blosumXX.json” file. 
-      Exemplary test case for the created code: having one DNA string “aabaab” for key “testspecies1” and another DNA string “ababaa” for key “testspecies2”, with following data in the blosum.json file: {"a":-1, "b":-2, "ab":-3, "ba":-3, "aa":2, "bb":3}, the output of Needleman-Wunsch algorithm should be 7.
+      Instruction: Provide a code that will read the data from both input files and for each pair of species from “organism.json” calculate a Needleman-Wunsch similarity score between their amino acid squences, those results should never include decimal point so be sure to treat them as integers. Scores and penalties for matching and deleting should be assigned accordign to the data in “blosumXX.json” file. 
+      Exemplary test case for the created code: having one string “aabaab” for key “testspecies1” and another string “ababaa” for key “testspecies2”, with following data in the blosum.json file: {"a":-1, "b":-2, "ab":-3, "ba":-3, "aa":2, "bb":3}, the output of Needleman-Wunsch algorithm should be 7.
       Keep in mind that this is only the first task of the project. These scores will be later used for other alorithms, like tree creation, so they should be stored in a structure with fast access.  
       Expected Output: A code that will provide solution for the described task. Divide provided code into necessary files and create as many functions as needed to ensure readability and maintainability. Add a short description of what generated code does.
 
@@ -101,11 +101,6 @@ tasks:
   - name: Project outline
     text: |
       Goal: Verification of required files and project outline.
-      Instruction: I need to set up all generated code in the repository. Generate an outline of what files I should have in the repository, including requirements.txt and any other file necessary to set up and start the program. For each file provide a final code that should be in this file and a short description of what this file contains. 
+      Instruction: I need to set up all generated code in the repository. Generate an outline of what files I should have in the repository, including requirements.txt and any other file necessary to set up and start the program, together with readMe.md file. For each file provide a final code that should be in this file and a short description of what this file contains. 
       Expected Output: List of all files that should be included in the final code set up, with description of what given files contains and final version of code to put it this file.
 
-  - name: ReadMe
-    text: |
-      Goal: Preparing a  ReadMe files for better projet understanding.
-      Instruction: Provide a README.md file with description of the project and instruction how to run it.  
-      Expected Output: Generated ReadMe.md file.
