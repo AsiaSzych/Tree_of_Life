@@ -101,6 +101,7 @@ tasks:
   - name: Project outline
     text: |
       Goal: Verification of required files and project outline.
-      Instruction: I need to set up all generated code in the repository. Generate an outline of what files I should have in the repository, including requirements.txt and any other file necessary to set up and start the program, together with readMe.md file. For each file provide a final code that should be in this file and a short description of what this file contains. 
+      Instruction: I need to set up all generated code in the repository. Generate an outline of what files I should have in the repository, including requirements.txt, readMe.md and any other file necessary to set up and start the program. For each file provide a final code that should be in this file and a short description of what this file contains. 
       Expected Output: List of all files that should be included in the final code set up, with description of what given files contains and final version of code to put it this file.
+
 
