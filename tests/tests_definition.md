@@ -3,7 +3,7 @@ All test that should be passed in orderd to declare implementation of the task a
 ``` pytest all_tests.py```
 
 It inlcudes 7 tests:
-1. compare needleman-wush scores - described in details below in **case #1** section
+1. compare needleman-wunsch scores - described in details below in **case #1** section
 2. check valid newick structure, with nodes only - described in details below in **case #2** section
 3. check valid newick structure, when distances are included - described in details below in **case #2** section
 4. compare two trees, with nodes only - described in details below in **case #3** section
@@ -12,10 +12,10 @@ It inlcudes 7 tests:
 7. check if png file to drawing of the tree exists 
 
 
-# Case #1 Compare Needleman-Wush scores
+# Case #1 Compare Needleman-Wunsch scores
 
 ### Input
-2 paths to json files - reference file and testing file, both containing calculated Needleman-Wush scores for all pair of organisms.
+2 paths to json files - reference file and testing file, both containing calculated Needleman-Wunsch scores for all pair of organisms.
 
 ### Input format 
 ```
@@ -123,7 +123,7 @@ Compare is the trees are the same, for example if they have the same amount of n
 - compare the newick representation returned by the `ete3` library using format which prints not only the topology, but also the distances between nodes. If the input file don't have distances information, the default distance is 1. Two trees with the same topology will be different if one has information about distances and the other one doens't. 
 
 ```bash
-python newick_compare.py -e ../reference_implementation/tree50_newick.nw -a ../reference_implementation/tree50_newick.nw ../reference_implementation/tree62_newick.nw ../reference_implementation/tree50_newick_with_distance.nw
+python newick_compare.py -e ../reference_implementation/tree_blosum50_newick.nw -a ../reference_implementation/tree_blosum50_newick.nw ../reference_implementation/tree_blosum62_newick.nw ../reference_implementation/tree_blosum50_newick_with_distance.nw
 ```
 output
 ```

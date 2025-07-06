@@ -1,10 +1,10 @@
 import json
-BLOSUM_VERSION = 62
+BLOSUM_VERSION = 50
 
 nw_json_file_path = f"./organisms_scores_blosum{BLOSUM_VERSION}.json"
 organisms_json_file_path = "../starter_code/organisms.json"
-newick_txt_file = f"./tree{BLOSUM_VERSION}_newick.nw"
-newick_distance_txt_file = f"./tree{BLOSUM_VERSION}_newick_with_distance.nw"
+newick_txt_file = f"./tree_blosum{BLOSUM_VERSION}_newick.nw"
+newick_distance_txt_file = f"./tree_blosum{BLOSUM_VERSION}_newick_with_distance.nw"
 thresholds_file_path=  "../starter_code/thresholds.txt"
 clusters_output_path = f"./clusters_for_blosum{BLOSUM_VERSION}.json"
 
@@ -25,6 +25,9 @@ class Node:
 
     def set_parent(self, parent):
         self.parent = parent
+
+    def update_distance(self, distance):
+        self.distance = distance
 
 class Tree:
 
@@ -76,13 +79,13 @@ class Tree:
     def traverse_newick_with_distance(self, root_node, newick):
 
         if root_node.left and not root_node.right:
-            newick = f"(,{self.traverse_newick_with_distance(root_node.left, newick)}):{root_node.value}"
+            newick = f"(,{self.traverse_newick_with_distance(root_node.left, newick)}):{root_node.distance}"
         elif not root_node.left and root_node.right:
-            newick = f"({self.traverse_newick_with_distance(root_node.right, newick)},):{root_node.value}"
+            newick = f"({self.traverse_newick_with_distance(root_node.right, newick)},):{root_node.distance}"
         elif root_node.left and root_node.right:
-            newick = f"({self.traverse_newick_with_distance(root_node.right, newick)},{self.traverse_newick_with_distance(root_node.left, newick)}):{root_node.value}"
+            newick = f"({self.traverse_newick_with_distance(root_node.right, newick)},{self.traverse_newick_with_distance(root_node.left, newick)}):{root_node.distance}"
         elif not root_node.left and not root_node.right:
-            newick = f"{root_node.name}"
+            newick = f"{root_node.name}:{root_node.distance}"
         else:
             pass
         return newick
@@ -117,11 +120,12 @@ class UnionFind:
 def init_tracking_cache(init_dict:dict, main_tree:Tree, nw_scores_sorted:dict):
 
     max_distance = nw_scores_sorted[list(nw_scores_sorted.keys())[0]]
-    max_distance = max_distance + 50
+    # max_distance = max_distance + 50
     tracking_dict = {}
     keys = list(init_dict.keys())
     for key in keys:
         key_node = main_tree.createNode(name=key, value=max_distance, is_leaf=True)
+        key_node.update_distance(max_distance)
         tracking_dict[key] = key_node
 
     return tracking_dict
@@ -134,18 +138,20 @@ def create_tree(tree:Tree, nw_scores_sorted:dict, tracking_cache:dict, union_fin
         species = k.split("_")
         specie1 = species[0]
         specie2 = species[1]
-        species1_root_node = tracking_cache[specie1]
-        species2_root_node = tracking_cache[specie2]
+        species1_root_node:Node = tracking_cache[specie1]
+        species2_root_node:Node= tracking_cache[specie2]
         species1_root = union_find.find(specie1)
         species2_root = union_find.find(specie2)
 
         if species1_root!=species2_root:
             union_find.unite(specie1, specie2)
             node_counter = node_counter+1
-            new_parent_node = tree.createNode(name = v, value = v, left=species1_root_node, right=species2_root_node)
+            new_parent_node = tree.createNode(name = '', value = v, left=species1_root_node, right=species2_root_node)
+            species1_root_node.update_distance(species1_root_node.value - new_parent_node.value)
+            species2_root_node.update_distance(species2_root_node.value - new_parent_node.value)
             tracking_cache = tree.change_root_for_all_children(current_node=species1_root_node, new_root=new_parent_node, fast_track = tracking_cache)
             tracking_cache = tree.change_root_for_all_children(current_node=species2_root_node, new_root=new_parent_node, fast_track = tracking_cache)
-
+    new_parent_node.update_distance(0)
     return tree, new_parent_node, tracking_cache, union_find
 
 def get_leaf_nodes(root):

@@ -6,24 +6,29 @@ def read_file(path: str) -> dict:
     with open(path) as input_file:
         return json.load(input_file)
 
-
 def compare_dicts(expected: dict, actual: dict):
     differences = {}
     for k_expected in expected:
+        k_expected_list = k_expected.split("_")
+        k_expected_v2 = k_expected_list[1]+"_"+k_expected_list[0]
         if k_expected in actual and actual[k_expected] != expected[k_expected]:
             differences[k_expected] = {'expected': expected[k_expected], 'actual': actual[k_expected]} 
-        elif k_expected not in actual:
+        elif k_expected_v2 in actual and actual[k_expected_v2] != expected[k_expected]:
+            differences[k_expected] = {'expected': expected[k_expected], 'actual': actual[k_expected_v2]} 
+        elif k_expected not in actual and k_expected_v2 not in actual:
             differences[k_expected] = {'expected': expected[k_expected], 'actual': 'missing'}
     
     for k_actual in actual:
-        if k_actual not in expected:
+        k_actual_list = k_actual.split("_")
+        k_actual_v2 = k_actual_list[1]+"_"+k_actual_list[0]
+        if k_actual not in expected and k_actual_v2 not in expected:
             differences[k_actual] = {'expected': 'missing', 'actual': actual[k_actual]}
 
     return differences
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Needleman-Wush scores compoarator. Gets two JSON files with the ogranisms paris and their scores and compare them with each other.')
+    parser = argparse.ArgumentParser(description='Needleman-Wunsch scores compoarator. Gets two JSON files with the ogranisms paris and their scores and compare them with each other.')
     parser.add_argument('-e', '--expected', help='JSON file with the expected results for organisms pairs and their scores.', required=True)
     parser.add_argument('-a', '--actual', nargs='+', help='JSON file wit the actual results that will be tested against the baseline. You can pass multiple files to compare all of them with the expected one', required=True)
     args = parser.parse_args()

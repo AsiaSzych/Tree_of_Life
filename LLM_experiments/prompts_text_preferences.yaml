@@ -1,0 +1,22 @@
+tasks:
+  - name: Perfect Prompt
+    versions:
+      - version: TestPreferences
+        text: |
+          I'm planning of using chatbot based on LLM to help me on a coding project. Please provide me a guide, how to create a perfect prompt. What should I always remember to provide?
+
+  - name: ChooseBetter
+    versions:
+      - version: TestPreferences
+        text: |
+          Can you tell me what kind of prompt is better for LLM to work on? The first one is provided as a free text,
+          like "Let's shortly align technical expectations. I need this program to be written in python 3.11, but you can choose necessary libraries freely. I will be using pyenv to create the environment and pip to install packages. If anything is saved to the file system or read from it, you should start all the paths from current directory and eventually use subfolders. I need my code to follow PEP formatting standards. When providing me a code samples or scritps, always include name of the file in which the code should be put. Could you please confirm specified limitations? Do not generate any code yet."
+          The second one is provided in a more structured text, for example: "Goal: Setting up technical requirements for all code solutions generated through the conversation. 
+          Instruction: I need this program to be written in python 3.11, but you can choose necessary libraries freely. I will be using pyenv to create the environment and pip to install packages. If anything is saved to the file system or read from it, you should start all the paths from current directory and eventually use subfolders. I need my code to follow PEP formatting standards. When providing me a code samples or scritps, always include name of the file in which the code should be put. 
+          Expected Output: Confirmation of specified requirement. Apply it to every code generated in further parts of conversation, but do not generate any code for this answer."
+
+  - name: Propose schema
+    versions:
+      - version: TestPreferences
+        text: |
+          Can you propose me a way to structure my prompts, so they will results in the best results?

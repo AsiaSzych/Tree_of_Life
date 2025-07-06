@@ -4,8 +4,16 @@ from ete3 import Tree
 def compare_trees(expected_file_path:str, actual_file_path:str):
     expected_tree = Tree(expected_file_path)
     actual_tree = Tree(actual_file_path)
-
-    return expected_tree.write(format=1) == actual_tree.write(format=1)
+    # return expected_tree.write(format=1) == actual_tree.write(format=1)
+    score = expected_tree.robinson_foulds(actual_tree)
+    rf = score[0]
+    max_rf = score[1]
+    parts_t1 = score[3]
+    parts_t2 = score[4]
+    print("RF distance is %s over a total of %s" %(rf, max_rf))
+    print("Partitions in tree2 that were not found in tree1:", parts_t1 - parts_t2)
+    print("Partitions in tree1 that were not found in tree2:", parts_t2 - parts_t1)
+    return rf == 0 #Two identical trees should produce 0 distance
 
 def main():
     parser = argparse.ArgumentParser(description='Newick trees compoarator. Gets two files with the trees in newick format and compare them with each other.')

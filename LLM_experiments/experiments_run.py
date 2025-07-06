@@ -2,6 +2,8 @@ import os
 import json
 import uuid
 import yaml
+import argparse
+import datetime
 from loguru import logger
 from langchain_core.chat_history import InMemoryChatMessageHistory
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder, HumanMessagePromptTemplate
@@ -47,7 +49,7 @@ def read_prompts(path_to_file:str):
         prompt_list.append(task["text"])
     return prompt_list
 
-def run_conversation(llm:Model, prompts:list):
+def run_conversation_and_save(llm:Model, prompts:list,language:str, try_number:int,):
     
     logger.info(f"Setting up LLMChain for conversatiom with model {llm.model_name}")
 
@@ -66,37 +68,41 @@ def run_conversation(llm:Model, prompts:list):
         input_messages_key="input",
         history_messages_key="history"
     )
-
-    markdown_output = ["# Conversational Code Generation\n"]
+    output_dir = f"./results_{llm.model_name}/solution_{language}_try_{try_number}"
+    os.makedirs(output_dir)
+    output_file_path = os.path.join(output_dir, f"conversation_{llm.model_name}_{language}_try_{try_number}.md")
+    time_start = datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
+    markdown_output = [f"# Conversational Code Generation - {llm.model_name} with {language}, {time_start}\n"]
+    with open(output_file_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(markdown_output))
 
     logger.info("Executing prompts and collecting responses")
     for i, p in enumerate(prompts, start=1):
         result = chain_with_memory.invoke({"input": p},config={"configurable": {"session_id": str(uuid.uuid4())}})
+        markdown_output = []
         markdown_output.append(f"## Prompt {i}\n")
         markdown_output.append(f"**User:** {p}\n")
         markdown_output.append(f"**LLM Response:**\n\n{result.content.strip()}\n")
+        with open(output_file_path, "a", encoding="utf-8") as f:
+            f.write("\n".join(markdown_output))
     logger.info("Prompt execution finished")
 
-    return markdown_output
-
-def save_results(llm:Model, language:str, try_number:int, content:list):
-    file_path = f"conversation_{llm.model_name}_{language}_try_{try_number}.md"
-    logger.info(f"Saving results to file {file_path}")
-    with open(file_path, "w", encoding="utf-8") as f:
-        f.write("\n".join(content))
-
-    logger.info("Results saved")
+    return True
 
 if __name__=="__main__":
+    parser = argparse.ArgumentParser(description='')
+    parser.add_argument('-l', '--language', help='Path to yaml file with prompts to execute.', required=True)
+    parser.add_argument('-v', '--version', help='Version of the run.', required=True)
+    args = parser.parse_args()
+        
     logger.info("Initialize models")
     gpt = Model(short_name="gpt-4.1",model_name="gpt-4.1", provider="openai") #https://platform.openai.com/docs/models/gpt-4.1
     deepseek = Model(short_name="deepseek-reasoner",model_name="deepseek-reasoner", provider="deepseek") #https://api-docs.deepseek.com/
     claude = Model(short_name="claude-opus-4",model_name="claude-opus-4-20250514", provider="anthropic") #https://docs.anthropic.com/en/docs/about-claude/models/overview
-    # gemini = Model(short_name="gemini-2.5-flash", model_name="gemini-2.5-flash-preview-05-20", provider="google") #https://ai.google.dev/gemini-api/docs/models
+    gemini = Model(short_name="gemini-2.5-pro", model_name="gemini-2.5-pro", provider="google") #https://ai.google.dev/gemini-api/docs/models
 
-    prompts = read_prompts("./prompts_final.yaml")
+    prompts = read_prompts(f"./prompts_final_{args.language}.yaml")
 
-    for llm in [claude]:
-        logger.info(f"Start flow for {llm.model_name}, try 1")
-        output = run_conversation(llm, prompts)
-        save_results(llm, "python", 1, output)
+    for llm in [gemini]:
+        logger.info(f"Start flow for {llm.model_name}, try {args.version}")
+        output = run_conversation_and_save(llm, prompts, args.language, args.version)
