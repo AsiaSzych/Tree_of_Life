@@ -1,4 +1,0 @@
-biopython==1.81
-numpy==1.26.0
-scipy==1.11.2
-matplotlib==3.7.2
