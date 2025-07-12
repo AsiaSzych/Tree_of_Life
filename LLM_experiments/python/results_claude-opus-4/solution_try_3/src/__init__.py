@@ -1,0 +1,1 @@
+"""Phylogenetic clustering package for amino acid sequence analysis."""
