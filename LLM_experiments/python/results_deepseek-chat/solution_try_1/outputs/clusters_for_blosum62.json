@@ -1,0 +1,427 @@
+{
+  "1100": [
+    [
+      "American alligator"
+    ],
+    [
+      "Eurasian eagle-owl",
+      "Bald Eagle",
+      "Mourning dove",
+      "Eurasian golden oriole",
+      "American robin",
+      "Cardinal"
+    ],
+    [
+      "African bush elephant"
+    ],
+    [
+      "Dolphin",
+      "Giant panda",
+      "Asian black bear",
+      "Polar bear",
+      "American black bear",
+      "Eastern wolf",
+      "Wild boar",
+      "Cattle",
+      "Domestic Yak",
+      "Northern giraffe",
+      "Reindeer",
+      "White-tailed deer",
+      "Dog",
+      "Red fox",
+      "Indian wolf",
+      "Dingo",
+      "Hyaena",
+      "Ocelot",
+      "Cheetah",
+      "Tiger",
+      "Domestic Cat",
+      "Cougar",
+      "Horse",
+      "White rhinoceros",
+      "Indian rhinoceros",
+      "Virginia opossum",
+      "Wallaby",
+      "Eastern gray kangaroo",
+      "House mouse",
+      "Brown rat",
+      "Malayan porcupine",
+      "American beaver",
+      "Chipmunk",
+      "Fox squirrel",
+      "Platypus",
+      "Guinea pig"
+    ],
+    [
+      "Koala"
+    ],
+    [
+      "Orangutan",
+      "Gorilla",
+      "Neanderthal",
+      "Human",
+      "Chimpanzee",
+      "Bonobo"
+    ],
+    [
+      "Chinese giant salamander",
+      "Fire salamander",
+      "Eastern newt",
+      "Great white shark",
+      "Fugu rubripes",
+      "Goldfish",
+      "Alpine newt",
+      "Gray treefrog",
+      "Edible frog"
+    ],
+    [
+      "Bearded Dragon"
+    ],
+    [
+      "Chameleon"
+    ],
+    [
+      "Russels viper"
+    ],
+    [
+      "Housefly"
+    ],
+    [
+      "Monarch butterfly"
+    ],
+    [
+      "Common clothes moth"
+    ],
+    [
+      "Termite"
+    ],
+    [
+      "Asian lady beetle"
+    ],
+    [
+      "Black garden ant"
+    ],
+    [
+      "Spotted Lanternfly"
+    ],
+    [
+      "Western honeybee"
+    ]
+  ],
+  "1260": [
+    [
+      "Bald Eagle",
+      "Mourning dove"
+    ],
+    [
+      "Eurasian golden oriole",
+      "American robin",
+      "Cardinal"
+    ],
+    [
+      "Eurasian eagle-owl"
+    ],
+    [
+      "American alligator"
+    ],
+    [
+      "Great white shark"
+    ],
+    [
+      "Fugu rubripes",
+      "Goldfish"
+    ],
+    [
+      "Fire salamander",
+      "Eastern newt"
+    ],
+    [
+      "Gray treefrog"
+    ],
+    [
+      "Edible frog"
+    ],
+    [
+      "Alpine newt"
+    ],
+    [
+      "Chinese giant salamander"
+    ],
+    [
+      "Dolphin"
+    ],
+    [
+      "Giant panda",
+      "Asian black bear",
+      "Polar bear",
+      "American black bear",
+      "Eastern wolf",
+      "Wild boar",
+      "Cattle",
+      "Domestic Yak",
+      "Northern giraffe",
+      "Reindeer",
+      "White-tailed deer",
+      "Dog",
+      "Red fox",
+      "Indian wolf",
+      "Dingo",
+      "Hyaena",
+      "Ocelot",
+      "Cheetah",
+      "Tiger",
+      "Domestic Cat",
+      "Cougar",
+      "Horse",
+      "White rhinoceros",
+      "Indian rhinoceros"
+    ],
+    [
+      "House mouse",
+      "Brown rat"
+    ],
+    [
+      "Malayan porcupine",
+      "American beaver",
+      "Chipmunk",
+      "Fox squirrel"
+    ],
+    [
+      "Virginia opossum",
+      "Wallaby",
+      "Eastern gray kangaroo"
+    ],
+    [
+      "Platypus"
+    ],
+    [
+      "Guinea pig"
+    ],
+    [
+      "African bush elephant"
+    ],
+    [
+      "Koala"
+    ],
+    [
+      "Orangutan",
+      "Gorilla",
+      "Neanderthal",
+      "Human",
+      "Chimpanzee",
+      "Bonobo"
+    ],
+    [
+      "Bearded Dragon"
+    ],
+    [
+      "Chameleon"
+    ],
+    [
+      "Russels viper"
+    ],
+    [
+      "Housefly"
+    ],
+    [
+      "Monarch butterfly"
+    ],
+    [
+      "Common clothes moth"
+    ],
+    [
+      "Termite"
+    ],
+    [
+      "Asian lady beetle"
+    ],
+    [
+      "Black garden ant"
+    ],
+    [
+      "Spotted Lanternfly"
+    ],
+    [
+      "Western honeybee"
+    ]
+  ],
+  "1350": [
+    [
+      "Bald Eagle"
+    ],
+    [
+      "Mourning dove"
+    ],
+    [
+      "American robin"
+    ],
+    [
+      "Cardinal"
+    ],
+    [
+      "Eurasian golden oriole"
+    ],
+    [
+      "Eurasian eagle-owl"
+    ],
+    [
+      "American alligator"
+    ],
+    [
+      "Fire salamander"
+    ],
+    [
+      "Eastern newt"
+    ],
+    [
+      "Fugu rubripes"
+    ],
+    [
+      "Goldfish"
+    ],
+    [
+      "Great white shark"
+    ],
+    [
+      "Gray treefrog"
+    ],
+    [
+      "Edible frog"
+    ],
+    [
+      "Alpine newt"
+    ],
+    [
+      "Chinese giant salamander"
+    ],
+    [
+      "Gorilla"
+    ],
+    [
+      "Neanderthal",
+      "Human",
+      "Chimpanzee",
+      "Bonobo"
+    ],
+    [
+      "Orangutan"
+    ],
+    [
+      "Northern giraffe"
+    ],
+    [
+      "Reindeer",
+      "White-tailed deer"
+    ],
+    [
+      "Cattle",
+      "Domestic Yak"
+    ],
+    [
+      "Dog",
+      "Red fox",
+      "Indian wolf",
+      "Dingo"
+    ],
+    [
+      "Hyaena",
+      "Ocelot",
+      "Cheetah",
+      "Tiger",
+      "Domestic Cat",
+      "Cougar"
+    ],
+    [
+      "White rhinoceros"
+    ],
+    [
+      "Indian rhinoceros"
+    ],
+    [
+      "Horse"
+    ],
+    [
+      "Wild boar"
+    ],
+    [
+      "Eastern wolf"
+    ],
+    [
+      "Giant panda",
+      "Asian black bear",
+      "Polar bear",
+      "American black bear"
+    ],
+    [
+      "Dolphin"
+    ],
+    [
+      "Virginia opossum"
+    ],
+    [
+      "Wallaby",
+      "Eastern gray kangaroo"
+    ],
+    [
+      "Chipmunk"
+    ],
+    [
+      "Fox squirrel"
+    ],
+    [
+      "American beaver"
+    ],
+    [
+      "Malayan porcupine"
+    ],
+    [
+      "House mouse",
+      "Brown rat"
+    ],
+    [
+      "Platypus"
+    ],
+    [
+      "Guinea pig"
+    ],
+    [
+      "African bush elephant"
+    ],
+    [
+      "Koala"
+    ],
+    [
+      "Bearded Dragon"
+    ],
+    [
+      "Chameleon"
+    ],
+    [
+      "Russels viper"
+    ],
+    [
+      "Housefly"
+    ],
+    [
+      "Monarch butterfly"
+    ],
+    [
+      "Common clothes moth"
+    ],
+    [
+      "Termite"
+    ],
+    [
+      "Asian lady beetle"
+    ],
+    [
+      "Black garden ant"
+    ],
+    [
+      "Spotted Lanternfly"
+    ],
+    [
+      "Western honeybee"
+    ]
+  ]
+}
