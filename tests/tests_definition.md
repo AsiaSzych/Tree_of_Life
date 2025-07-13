@@ -122,6 +122,8 @@ Compare is the trees are the same, for example if they have the same amount of n
 - load the tree
 - compare the newick representation returned by the `ete3` library using format which prints not only the topology, but also the distances between nodes. If the input file don't have distances information, the default distance is 1. Two trees with the same topology will be different if one has information about distances and the other one doens't. 
 
+Using additional flag `-d` triggers additional check whether branch distances given by newick files also match
+
 ```bash
 python newick_compare.py -e ../reference_implementation/tree_blosum50_newick.nw -a ../reference_implementation/tree_blosum50_newick.nw ../reference_implementation/tree_blosum62_newick.nw ../reference_implementation/tree_blosum50_newick_with_distance.nw
 ```
@@ -143,6 +145,31 @@ Trees are not the same!
 Passed: 1; Failed: 2; Total: 3
 ```
 
+```bash
+python newick_compare.py -e ../reference_implementation/tree_blosum50_newick_with_distance.nw -a ../reference_implementation/tree_blosum62_newick_with_distance.nw ../reference_implementation/tree_blosum50_
+newick_with_distance.nw -d
+```
+output
+```
+----------------------------------
+Comparing expected ../reference_implementation/tree_blosum50_newick_with_distance.nw with actual ../reference_implementation/tree_blosum62_newick_with_distance.nw ONLY on branches
+Trees topologies are not the same!
+----------------------------------
+----------------------------------
+Comparing expected ../reference_implementation/tree_blosum50_newick_with_distance.nw with actual ../reference_implementation/tree_blosum50_newick_with_distance.nw ONLY on branches
+Trees topologies are the same!
+----------------------------------
+----------------------------------
+Comparing expected ../reference_implementation/tree_blosum50_newick_with_distance.nw with actual ../reference_implementation/tree_blosum62_newick_with_distance.nw on distances
+Trees distances are not the same!
+----------------------------------
+----------------------------------
+Comparing expected ../reference_implementation/tree_blosum50_newick_with_distance.nw with actual ../reference_implementation/tree_blosum50_newick_with_distance.nw on distances
+Trees distances are the same!
+----------------------------------
+--- Summary ---
+Passed: 2; Failed: 2; Total: 4
+```
 
 # Case #4 Compare created clusters
 

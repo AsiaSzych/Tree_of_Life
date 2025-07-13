@@ -1,12 +1,12 @@
 import os
 from nw_score import compare_dicts
 from newick_validate import check_valid_newick
-from newick_compare import compare_trees
+from newick_compare import compare_trees, compare_branch_lengths
 from cluster_compare import compare_clusters, read_file
 
 BLOSUM = 62
 expected_folder = "../reference_implementation"
-actual_folder = "../LLM_experiments/test_results/test_solution_version_GoalInstructionOutput_v1/output"
+actual_folder = "../LLM_experiments/java/results_claude-opus-4/solution_try_3"
 
 def test_compare_needleman_wunsch_score():
     file_name = f"organisms_scores_blosum{BLOSUM}.json"
@@ -36,7 +36,7 @@ def test_compare_trees_with_distance():
     file_name = f"tree_blosum{BLOSUM}_newick_with_distance.nw"
     expected_file = os.path.join(expected_folder, file_name)
     actual_file = os.path.join(actual_folder, file_name)    
-    assert compare_trees(expected_file_path=expected_file, actual_file_path=actual_file)
+    assert compare_branch_lengths(expected_file_path=expected_file, actual_file_path=actual_file) == []
 
 def test_compare_clusters():
     file_name = f"clusters_for_blosum{BLOSUM}.json"
