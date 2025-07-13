@@ -1,0 +1,91 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.11, pytest-8.3.5, pluggy-1.6.0
+rootdir: /home/joanna/Documents/Master_IU/Thesis/Coding task/Tree_of_Life/tests
+plugins: anyio-4.9.0, langsmith-0.3.44
+collected 7 items
+
+all_tests.py F..FFF.                                                     [100%]
+
+=================================== FAILURES ===================================
+_____________________ test_compare_needleman_wunsch_score ______________________
+
+    def test_compare_needleman_wunsch_score():
+        file_name = f"organisms_scores_blosum{BLOSUM}.json"
+        expected_file = os.path.join(expected_folder, file_name)
+        actual_file = os.path.join(actual_folder, file_name)
+        expected_dict = read_file(expected_file)
+        actual_dict = read_file(actual_file)
+>       assert compare_dicts(expected=expected_dict, actual=actual_dict)=={}
+E       AssertionError: assert {'African bus...': 1177}, ...} == {}
+E         
+E         Left contains 2371 more items:
+E         {'African bush elephant_Alpine newt': {'actual': 1174, 'expected': 1167},
+E          'African bush elephant_American alligator': {'actual': 1171, 'expected': 1152},
+E          'African bush elephant_American beaver': {'actual': 1249, 'expected': 1248},
+E          'African bush elephant_American robin': {'actual': 1188, 'expected': 1177},
+E          'African bush elephant_Asian lady beetle': {'actual': 1000, 'expected': 943},...
+E         
+E         ...Full output truncated (2393 lines hidden), use '-vv' to show
+
+all_tests.py:17: AssertionError
+________________________ test_compare_trees_only_nodes _________________________
+
+    def test_compare_trees_only_nodes():
+        file_name = f"tree_blosum{BLOSUM}_newick.nw"
+        expected_file = os.path.join(expected_folder, file_name)
+        actual_file = os.path.join(actual_folder, file_name)
+>       assert compare_trees(expected_file_path=expected_file, actual_file_path=actual_file)
+E       AssertionError: assert False
+E        +  where False = compare_trees(expected_file_path='../reference_implementation/tree_blosum62_newick.nw', actual_file_path='../LLM_experiments/python/results_claude-opus-4/solution_try_3/tree_blosum62_newick.nw')
+
+all_tests.py:33: AssertionError
+----------------------------- Captured stdout call -----------------------------
+RF distance is 6 over a total of 138
+Partitions in tree2 that were not found in tree1: {('Northern giraffe', 'Reindeer', 'White-tailed deer'), ('American beaver', 'American black bear', 'Asian black bear', 'Brown rat', 'Cattle', 'Cheetah', 'Chipmunk', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern wolf', 'Fox squirrel', 'Giant panda', 'Guinea pig', 'Horse', 'House mouse', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Malayan porcupine', 'Northern giraffe', 'Ocelot', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'Virginia opossum', 'Wallaby', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('American beaver', 'American black bear', 'Asian black bear', 'Cattle', 'Cheetah', 'Chipmunk', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern wolf', 'Fox squirrel', 'Giant panda', 'Horse', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Northern giraffe', 'Ocelot', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'White rhinoceros', 'White-tailed deer', 'Wild boar')}
+Partitions in tree1 that were not found in tree2: {('Cattle', 'Domestic Yak', 'Reindeer', 'White-tailed deer'), ('American black bear', 'Asian black bear', 'Cattle', 'Cheetah', 'Chipmunk', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern wolf', 'Fox squirrel', 'Giant panda', 'Horse', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Northern giraffe', 'Ocelot', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'Virginia opossum', 'Wallaby', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('American beaver', 'American black bear', 'Asian black bear', 'Brown rat', 'Cattle', 'Cheetah', 'Chipmunk', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern wolf', 'Fox squirrel', 'Giant panda', 'Horse', 'House mouse', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Malayan porcupine', 'Northern giraffe', 'Ocelot', 'Platypus', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'Virginia opossum', 'Wallaby', 'White rhinoceros', 'White-tailed deer', 'Wild boar')}
+_______________________ test_compare_trees_with_distance _______________________
+
+    def test_compare_trees_with_distance():
+        file_name = f"tree_blosum{BLOSUM}_newick_with_distance.nw"
+        expected_file = os.path.join(expected_folder, file_name)
+        actual_file = os.path.join(actual_folder, file_name)
+>       assert compare_branch_lengths(expected_file_path=expected_file, actual_file_path=actual_file) == []
+E       assert [{'dist1': 9....0', ...}, ...] == []
+E         
+E         Left contains 68 more items, first extra item: {'dist1': 9.0, 'dist2': -7.0, 'leaves': {'Common clothes moth', 'Monarch butterfly'}, 'message': "Branch length mismatch for node with leaves {'Monarch butterfly', 'Common clothes moth'}: 9.0 vs -7.0", ...}
+E         Use -v to get more diff
+
+all_tests.py:39: AssertionError
+____________________________ test_compare_clusters _____________________________
+
+    def test_compare_clusters():
+        file_name = f"clusters_for_blosum{BLOSUM}.json"
+        expected_file = os.path.join(expected_folder, file_name)
+        actual_file = os.path.join(actual_folder, file_name)
+        expected_dict = read_file(expected_file)
+        actual_dict = read_file(actual_file)
+>       assert compare_clusters(expected=expected_dict, actual=actual_dict)=={}
+E       AssertionError: assert {'1100': {'mi...obin', ...]]}} == {}
+E         
+E         Left contains 3 more items:
+E         {'1100': {'missing_clusters': [['Western honeybee'],
+E                                        ['Spotted Lanternfly'],
+E                                        ['Black garden ant'],
+E                                        ['African bush elephant',
+E                                         'Alpine newt',...
+E         
+E         ...Full output truncated (8474 lines hidden), use '-vv' to show
+
+all_tests.py:47: AssertionError
+=============================== warnings summary ===============================
+../../../../../../.pyenv/versions/3.11.11/envs/tree_of_life_base/lib/python3.11/site-packages/ete3/webplugin/webapp.py:44
+  /home/joanna/.pyenv/versions/3.11.11/envs/tree_of_life_base/lib/python3.11/site-packages/ete3/webplugin/webapp.py:44: DeprecationWarning: 'cgi' is deprecated and slated for removal in Python 3.13
+    import cgi
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED all_tests.py::test_compare_needleman_wunsch_score - AssertionError: as...
+FAILED all_tests.py::test_compare_trees_only_nodes - AssertionError: assert F...
+FAILED all_tests.py::test_compare_trees_with_distance - assert [{'dist1': 9.....
+FAILED all_tests.py::test_compare_clusters - AssertionError: assert {'1100': ...
+==================== 4 failed, 3 passed, 1 warning in 2.58s ====================
