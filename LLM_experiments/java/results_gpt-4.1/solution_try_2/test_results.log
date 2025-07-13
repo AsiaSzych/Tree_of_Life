@@ -1,0 +1,118 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.11, pytest-8.3.5, pluggy-1.6.0
+rootdir: /home/joanna/Documents/Master_IU/Thesis/Coding task/Tree_of_Life/tests
+plugins: anyio-4.9.0, langsmith-0.3.44
+collected 7 items
+
+all_tests.py ..F.FF.                                                     [100%]
+
+=================================== FAILURES ===================================
+_______________________ test_valid_newick_with_distance ________________________
+
+    def test_valid_newick_with_distance():
+        file_name = f"tree_blosum{BLOSUM}_newick_with_distance.nw"
+        actual_tree_file = os.path.join(actual_folder, file_name)
+>       assert check_valid_newick(file_path=actual_tree_file)
+E       AssertionError: assert False
+E        +  where False = check_valid_newick(file_path='../LLM_experiments/java/results_gpt-4.1/solution_try_2/tree_blosum62_newick_with_distance.nw')
+
+all_tests.py:27: AssertionError
+_______________________ test_compare_trees_with_distance _______________________
+
+    def test_compare_trees_with_distance():
+        file_name = f"tree_blosum{BLOSUM}_newick_with_distance.nw"
+        expected_file = os.path.join(expected_folder, file_name)
+        actual_file = os.path.join(actual_folder, file_name)
+>       assert compare_branch_lengths(expected_file_path=expected_file, actual_file_path=actual_file) == []
+
+all_tests.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+newick_compare.py:21: in compare_branch_lengths
+    actual_tree = Tree(actual_file_path)
+/home/joanna/.pyenv/versions/3.11.11/envs/tree_of_life_base/lib/python3.11/site-packages/ete3/coretype/tree.py:212: in __init__
+    read_newick(newick, root_node = self, format=format,
+/home/joanna/.pyenv/versions/3.11.11/envs/tree_of_life_base/lib/python3.11/site-packages/ete3/parser/newick.py:266: in read_newick
+    return _read_newick_from_string(nw, root_node, matcher, format, quoted_names)
+/home/joanna/.pyenv/versions/3.11.11/envs/tree_of_life_base/lib/python3.11/site-packages/ete3/parser/newick.py:334: in _read_newick_from_string
+    _read_node_data(closing_nodes[0], current_parent, "leaf", matcher, formatcode)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+subnw = 'Spotted Lanternfly:0:905', current_node = Tree node '' (0x7f60109e911)
+node_type = 'leaf'
+matcher = {'internal': ['support', 'dist', <class 'float'>, <class 'float'>, re.compile('^\\s*(\\s*[+-]?\\d+\\.?\\d*(?:[eE][-+]?...>, re.compile('^\\s*([^():,;]+?)?\\s*(:\\s*[+-]?\\d+\\.?\\d*(?:[eE][-+]?\\d+)?\\s*)?\\s*(\\[&&NHX:[^\\]]*\\])?\\s*$')]}
+formatcode = 0
+
+    def _read_node_data(subnw, current_node, node_type, matcher, formatcode):
+        """ Reads a leaf node from a subpart of the original newick
+        tree """
+    
+        if node_type == "leaf" or node_type == "single":
+            if node_type == "leaf":
+                node = current_node.add_child()
+            else:
+                node = current_node
+        else:
+            node = current_node
+    
+        subnw = subnw.strip()
+    
+        if not subnw and node_type == 'leaf' and formatcode != 100:
+            raise NewickError('Empty leaf node found')
+        elif not subnw:
+            return
+    
+        container1, container2, converterFn1, converterFn2, compiled_matcher = matcher[node_type]
+        data = re.match(compiled_matcher, subnw)
+        if data:
+            data = data.groups()
+            # This prevents ignoring errors even in flexible nodes:
+            if subnw and data[0] is None and data[1] is None and data[2] is None:
+                raise NewickError("Unexpected newick format '%s'" %subnw)
+    
+            if data[0] is not None and data[0] != '':
+                node.add_feature(container1, converterFn1(data[0].strip()))
+    
+            if data[1] is not None and data[1] != '':
+                node.add_feature(container2, converterFn2(data[1][1:].strip()))
+    
+            if data[2] is not None \
+                    and data[2].startswith("[&&NHX"):
+                _parse_extra_features(node, data[2])
+        else:
+>           raise NewickError("Unexpected newick format '%s' " %subnw[0:50])
+E           ete3.parser.newick.NewickError: Unexpected newick format 'Spotted Lanternfly:0:905' 
+E           You may want to check other newick loading flags like 'format' or 'quoted_node_names'.
+
+/home/joanna/.pyenv/versions/3.11.11/envs/tree_of_life_base/lib/python3.11/site-packages/ete3/parser/newick.py:445: NewickError
+____________________________ test_compare_clusters _____________________________
+
+    def test_compare_clusters():
+        file_name = f"clusters_for_blosum{BLOSUM}.json"
+        expected_file = os.path.join(expected_folder, file_name)
+        actual_file = os.path.join(actual_folder, file_name)
+        expected_dict = read_file(expected_file)
+        actual_dict = read_file(actual_file)
+>       assert compare_clusters(expected=expected_dict, actual=actual_dict)=={}
+E       AssertionError: assert {'1100': {'mi...obin', ...]]}} == {}
+E         
+E         Left contains 3 more items:
+E         {'1100': {'missing_clusters': [['Bearded Dragon', 'Chameleon'],
+E                                        ['Asian lady beetle'],
+E                                        ['Spotted Lanternfly'],
+E                                        ['Western honeybee'],
+E                                        ['African bush elephant',...
+E         
+E         ...Full output truncated (8474 lines hidden), use '-vv' to show
+
+all_tests.py:47: AssertionError
+=============================== warnings summary ===============================
+../../../../../../.pyenv/versions/3.11.11/envs/tree_of_life_base/lib/python3.11/site-packages/ete3/webplugin/webapp.py:44
+  /home/joanna/.pyenv/versions/3.11.11/envs/tree_of_life_base/lib/python3.11/site-packages/ete3/webplugin/webapp.py:44: DeprecationWarning: 'cgi' is deprecated and slated for removal in Python 3.13
+    import cgi
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED all_tests.py::test_valid_newick_with_distance - AssertionError: assert...
+FAILED all_tests.py::test_compare_trees_with_distance - ete3.parser.newick.Ne...
+FAILED all_tests.py::test_compare_clusters - AssertionError: assert {'1100': ...
+==================== 3 failed, 4 passed, 1 warning in 2.99s ====================
