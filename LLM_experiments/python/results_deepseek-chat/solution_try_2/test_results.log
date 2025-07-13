@@ -1,0 +1,156 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.11, pytest-8.3.5, pluggy-1.6.0
+rootdir: /home/joanna/Documents/Master_IU/Thesis/Coding task/Tree_of_Life/tests
+plugins: anyio-4.9.0, langsmith-0.3.44
+collected 7 items
+
+all_tests.py F.FFFF.                                                     [100%]
+
+=================================== FAILURES ===================================
+_____________________ test_compare_needleman_wunsch_score ______________________
+
+    def test_compare_needleman_wunsch_score():
+        file_name = f"organisms_scores_blosum{BLOSUM}.json"
+        expected_file = os.path.join(expected_folder, file_name)
+        actual_file = os.path.join(actual_folder, file_name)
+        expected_dict = read_file(expected_file)
+        actual_dict = read_file(actual_file)
+>       assert compare_dicts(expected=expected_dict, actual=actual_dict)=={}
+E       AssertionError: assert {'African bus...issing'}, ...} == {}
+E         
+E         Left contains 71 more items:
+E         {'African bush elephant_African bush elephant': {'actual': 1431,
+E                                                          'expected': 'missing'},
+E          'Alpine newt_Alpine newt': {'actual': 1431, 'expected': 'missing'},
+E          'American alligator_American alligator': {'actual': 1433,
+E                                                    'expected': 'missing'},...
+E         
+E         ...Full output truncated (76 lines hidden), use '-vv' to show
+
+all_tests.py:17: AssertionError
+_______________________ test_valid_newick_with_distance ________________________
+
+    def test_valid_newick_with_distance():
+        file_name = f"tree_blosum{BLOSUM}_newick_with_distance.nw"
+        actual_tree_file = os.path.join(actual_folder, file_name)
+>       assert check_valid_newick(file_path=actual_tree_file)
+E       AssertionError: assert False
+E        +  where False = check_valid_newick(file_path='../LLM_experiments/python/results_deepseek-chat/solution_try_2/output/tree_blosum62_newick_with_distance.nw')
+
+all_tests.py:27: AssertionError
+________________________ test_compare_trees_only_nodes _________________________
+
+    def test_compare_trees_only_nodes():
+        file_name = f"tree_blosum{BLOSUM}_newick.nw"
+        expected_file = os.path.join(expected_folder, file_name)
+        actual_file = os.path.join(actual_folder, file_name)
+>       assert compare_trees(expected_file_path=expected_file, actual_file_path=actual_file)
+E       AssertionError: assert False
+E        +  where False = compare_trees(expected_file_path='../reference_implementation/tree_blosum62_newick.nw', actual_file_path='../LLM_experiments/python/results_deepseek-chat/solution_try_2/output/tree_blosum62_newick.nw')
+
+all_tests.py:33: AssertionError
+----------------------------- Captured stdout call -----------------------------
+RF distance is 98 over a total of 138
+Partitions in tree2 that were not found in tree1: {('Cougar', 'Domestic Cat', 'Tiger'), ('American black bear', 'Asian black bear', 'Cattle', 'Cheetah', 'Cougar', 'Dingo', 'Dog', 'Domestic Cat', 'Domestic Yak', 'Eastern wolf', 'Giant panda', 'Horse', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Northern giraffe', 'Ocelot', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('Alpine newt', 'Chinese giant salamander', 'Eastern newt', 'Edible frog', 'Fire salamander', 'Fugu rubripes', 'Goldfish', 'Gray treefrog', 'Great white shark'), ('Cheetah', 'Cougar', 'Domestic Cat', 'Ocelot', 'Tiger'), ('Alpine newt', 'Eastern newt', 'Edible frog', 'Fire salamander', 'Fugu rubripes', 'Goldfish', 'Gray treefrog', 'Great white shark'), ('Dingo', 'Dog', 'Indian wolf'), ('Eastern gray kangaroo', 'Virginia opossum', 'Wallaby'), ('American beaver', 'American black bear', 'Asian black bear', 'Brown rat', 'Cattle', 'Cheetah', 'Chipmunk', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern wolf', 'Fox squirrel', 'Giant panda', 'Guinea pig', 'Horse', 'House mouse', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Koala', 'Malayan porcupine', 'Northern giraffe', 'Ocelot', 'Platypus', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'Virginia opossum', 'Wallaby', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('Northern giraffe', 'Reindeer', 'White-tailed deer'), ('Eastern newt', 'Fire salamander', 'Fugu rubripes', 'Goldfish', 'Great white shark'), ('American beaver', 'American black bear', 'Asian black bear', 'Cattle', 'Cheetah', 'Chipmunk', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern wolf', 'Fox squirrel', 'Giant panda', 'Horse', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Northern giraffe', 'Ocelot', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'Virginia opossum', 'Wallaby', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('American beaver', 'American black bear', 'Asian black bear', 'Brown rat', 'Cattle', 'Cheetah', 'Chipmunk', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern wolf', 'Fox squirrel', 'Giant panda', 'Guinea pig', 'Horse', 'House mouse', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Malayan porcupine', 'Northern giraffe', 'Ocelot', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'Virginia opossum', 'Wallaby', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('American black bear', 'Asian black bear', 'Cattle', 'Cheetah', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern wolf', 'Giant panda', 'Horse', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Northern giraffe', 'Ocelot', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('Asian lady beetle', 'Common clothes moth', 'Housefly', 'Monarch butterfly', 'Termite'), ('American black bear', 'Asian black bear', 'Cattle', 'Cheetah', 'Chipmunk', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern wolf', 'Fox squirrel', 'Giant panda', 'Horse', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Northern giraffe', 'Ocelot', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('African bush elephant', 'Alpine newt', 'American beaver', 'American black bear', 'American robin', 'Asian black bear', 'Bald Eagle', 'Bonobo', 'Brown rat', 'Cardinal', 'Cattle', 'Cheetah', 'Chimpanzee', 'Chinese giant salamander', 'Chipmunk', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern newt', 'Eastern wolf', 'Edible frog', 'Eurasian eagle-owl', 'Eurasian golden oriole', 'Fire salamander', 'Fox squirrel', 'Fugu rubripes', 'Giant panda', 'Goldfish', 'Gorilla', 'Gray treefrog', 'Great white shark', 'Guinea pig', 'Horse', 'House mouse', 'Human', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Koala', 'Malayan porcupine', 'Mourning dove', 'Neanderthal', 'Northern giraffe', 'Ocelot', 'Orangutan', 'Platypus', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'Virginia opossum', 'Wallaby', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('African bush elephant', 'Alpine newt', 'American alligator', 'American beaver', 'American black bear', 'American robin', 'Asian black bear', 'Bald Eagle', 'Bearded Dragon', 'Bonobo', 'Brown rat', 'Cardinal', 'Cattle', 'Chameleon', 'Cheetah', 'Chimpanzee', 'Chinese giant salamander', 'Chipmunk', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern newt', 'Eastern wolf', 'Edible frog', 'Eurasian eagle-owl', 'Eurasian golden oriole', 'Fire salamander', 'Fox squirrel', 'Fugu rubripes', 'Giant panda', 'Goldfish', 'Gorilla', 'Gray treefrog', 'Great white shark', 'Guinea pig', 'Horse', 'House mouse', 'Human', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Koala', 'Malayan porcupine', 'Mourning dove', 'Neanderthal', 'Northern giraffe', 'Ocelot', 'Orangutan', 'Platypus', 'Polar bear', 'Red fox', 'Reindeer', 'Russels viper', 'Tiger', 'Virginia opossum', 'Wallaby', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('American beaver', 'American black bear', 'Asian black bear', 'Brown rat', 'Cattle', 'Cheetah', 'Chipmunk', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern wolf', 'Fox squirrel', 'Giant panda', 'Guinea pig', 'Horse', 'House mouse', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Malayan porcupine', 'Northern giraffe', 'Ocelot', 'Platypus', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'Virginia opossum', 'Wallaby', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('American black bear', 'Asian black bear', 'Giant panda', 'Polar bear'), ('African bush elephant', 'Alpine newt', 'American alligator', 'American beaver', 'American black bear', 'American robin', 'Asian black bear', 'Asian lady beetle', 'Bald Eagle', 'Bearded Dragon', 'Black garden ant', 'Bonobo', 'Brown rat', 'Cardinal', 'Cattle', 'Chameleon', 'Cheetah', 'Chimpanzee', 'Chinese giant salamander', 'Chipmunk', 'Common clothes moth', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern newt', 'Eastern wolf', 'Edible frog', 'Eurasian eagle-owl', 'Eurasian golden oriole', 'Fire salamander', 'Fox squirrel', 'Fugu rubripes', 'Giant panda', 'Goldfish', 'Gorilla', 'Gray treefrog', 'Great white shark', 'Guinea pig', 'Horse', 'House mouse', 'Housefly', 'Human', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Koala', 'Malayan porcupine', 'Monarch butterfly', 'Mourning dove', 'Neanderthal', 'Northern giraffe', 'Ocelot', 'Orangutan', 'Platypus', 'Polar bear', 'Red fox', 'Reindeer', 'Russels viper', 'Spotted Lanternfly', 'Termite', 'Tiger', 'Virginia opossum', 'Wallaby', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('American black bear', 'Asian black bear', 'Polar bear'), ('Cougar', 'Domestic Cat', 'Ocelot', 'Tiger'), ('Cattle', 'Cheetah', 'Cougar', 'Dingo', 'Dog', 'Domestic Cat', 'Domestic Yak', 'Eastern wolf', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Northern giraffe', 'Ocelot', 'Red fox', 'Reindeer', 'Tiger', 'White rhinoceros', 'White-tailed deer'), ('American robin', 'Bald Eagle', 'Cardinal', 'Eurasian eagle-owl', 'Eurasian golden oriole', 'Mourning dove'), ('American black bear', 'Asian black bear', 'Cattle', 'Cheetah', 'Cougar', 'Dingo', 'Dog', 'Domestic Cat', 'Domestic Yak', 'Eastern wolf', 'Giant panda', 'Horse', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Northern giraffe', 'Ocelot', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'White rhinoceros', 'White-tailed deer'), ('Cattle', 'Domestic Yak', 'Northern giraffe', 'Reindeer', 'White-tailed deer'), ('Bonobo', 'Chimpanzee', 'Human', 'Neanderthal'), ('African bush elephant', 'Alpine newt', 'American alligator', 'American beaver', 'American black bear', 'American robin', 'Asian black bear', 'Bald Eagle', 'Bonobo', 'Brown rat', 'Cardinal', 'Cattle', 'Cheetah', 'Chimpanzee', 'Chinese giant salamander', 'Chipmunk', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern newt', 'Eastern wolf', 'Edible frog', 'Eurasian eagle-owl', 'Eurasian golden oriole', 'Fire salamander', 'Fox squirrel', 'Fugu rubripes', 'Giant panda', 'Goldfish', 'Gorilla', 'Gray treefrog', 'Great white shark', 'Guinea pig', 'Horse', 'House mouse', 'Human', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Koala', 'Malayan porcupine', 'Mourning dove', 'Neanderthal', 'Northern giraffe', 'Ocelot', 'Orangutan', 'Platypus', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'Virginia opossum', 'Wallaby', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('American robin', 'Cardinal', 'Eurasian golden oriole'), ('American beaver', 'American black bear', 'Asian black bear', 'Bonobo', 'Brown rat', 'Cattle', 'Cheetah', 'Chimpanzee', 'Chipmunk', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern wolf', 'Fox squirrel', 'Giant panda', 'Gorilla', 'Guinea pig', 'Horse', 'House mouse', 'Human', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Koala', 'Malayan porcupine', 'Neanderthal', 'Northern giraffe', 'Ocelot', 'Orangutan', 'Platypus', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'Virginia opossum', 'Wallaby', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('Bald Eagle', 'Eurasian eagle-owl', 'Mourning dove'), ('African bush elephant', 'American beaver', 'American black bear', 'Asian black bear', 'Bonobo', 'Brown rat', 'Cattle', 'Cheetah', 'Chimpanzee', 'Chipmunk', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern wolf', 'Fox squirrel', 'Giant panda', 'Gorilla', 'Guinea pig', 'Horse', 'House mouse', 'Human', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Koala', 'Malayan porcupine', 'Neanderthal', 'Northern giraffe', 'Ocelot', 'Orangutan', 'Platypus', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'Virginia opossum', 'Wallaby', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('American black bear', 'Asian black bear', 'Cattle', 'Cheetah', 'Cougar', 'Dingo', 'Dog', 'Domestic Cat', 'Domestic Yak', 'Eastern wolf', 'Giant panda', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Northern giraffe', 'Ocelot', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'White rhinoceros', 'White-tailed deer'), ('American beaver', 'American black bear', 'Asian black bear', 'Cattle', 'Cheetah', 'Chipmunk', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern wolf', 'Fox squirrel', 'Giant panda', 'Horse', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Northern giraffe', 'Ocelot', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('Alpine newt', 'Eastern newt', 'Fire salamander', 'Fugu rubripes', 'Goldfish', 'Great white shark'), ('Cheetah', 'Cougar', 'Dingo', 'Dog', 'Domestic Cat', 'Hyaena', 'Indian wolf', 'Ocelot', 'Red fox', 'Tiger'), ('Dingo', 'Dog', 'Indian wolf', 'Red fox'), ('African bush elephant', 'Alpine newt', 'American alligator', 'American beaver', 'American black bear', 'American robin', 'Asian black bear', 'Bald Eagle', 'Bonobo', 'Brown rat', 'Cardinal', 'Cattle', 'Cheetah', 'Chimpanzee', 'Chinese giant salamander', 'Chipmunk', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern newt', 'Eastern wolf', 'Edible frog', 'Eurasian eagle-owl', 'Eurasian golden oriole', 'Fire salamander', 'Fox squirrel', 'Fugu rubripes', 'Giant panda', 'Goldfish', 'Gorilla', 'Gray treefrog', 'Great white shark', 'Guinea pig', 'Horse', 'House mouse', 'Human', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Koala', 'Malayan porcupine', 'Mourning dove', 'Neanderthal', 'Northern giraffe', 'Ocelot', 'Orangutan', 'Platypus', 'Polar bear', 'Red fox', 'Reindeer', 'Russels viper', 'Tiger', 'Virginia opossum', 'Wallaby', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('African bush elephant', 'Alpine newt', 'American alligator', 'American beaver', 'American black bear', 'American robin', 'Asian black bear', 'Asian lady beetle', 'Bald Eagle', 'Bearded Dragon', 'Black garden ant', 'Bonobo', 'Brown rat', 'Cardinal', 'Cattle', 'Chameleon', 'Cheetah', 'Chimpanzee', 'Chinese giant salamander', 'Chipmunk', 'Common clothes moth', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern newt', 'Eastern wolf', 'Edible frog', 'Eurasian eagle-owl', 'Eurasian golden oriole', 'Fire salamander', 'Fox squirrel', 'Fugu rubripes', 'Giant panda', 'Goldfish', 'Gorilla', 'Gray treefrog', 'Great white shark', 'Guinea pig', 'Horse', 'House mouse', 'Housefly', 'Human', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Koala', 'Malayan porcupine', 'Monarch butterfly', 'Mourning dove', 'Neanderthal', 'Northern giraffe', 'Ocelot', 'Orangutan', 'Platypus', 'Polar bear', 'Red fox', 'Reindeer', 'Russels viper', 'Termite', 'Tiger', 'Virginia opossum', 'Wallaby', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('American beaver', 'American black bear', 'Asian black bear', 'Cattle', 'Cheetah', 'Chipmunk', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern wolf', 'Fox squirrel', 'Giant panda', 'Horse', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Malayan porcupine', 'Northern giraffe', 'Ocelot', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'Virginia opossum', 'Wallaby', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('Bonobo', 'Chimpanzee', 'Gorilla', 'Human', 'Neanderthal'), ('Cheetah', 'Cougar', 'Dingo', 'Dog', 'Domestic Cat', 'Eastern wolf', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Ocelot', 'Red fox', 'Tiger', 'White rhinoceros'), ('African bush elephant', 'Alpine newt', 'American beaver', 'American black bear', 'Asian black bear', 'Bonobo', 'Brown rat', 'Cattle', 'Cheetah', 'Chimpanzee', 'Chinese giant salamander', 'Chipmunk', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern newt', 'Eastern wolf', 'Edible frog', 'Fire salamander', 'Fox squirrel', 'Fugu rubripes', 'Giant panda', 'Goldfish', 'Gorilla', 'Gray treefrog', 'Great white shark', 'Guinea pig', 'Horse', 'House mouse', 'Human', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Koala', 'Malayan porcupine', 'Neanderthal', 'Northern giraffe', 'Ocelot', 'Orangutan', 'Platypus', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'Virginia opossum', 'Wallaby', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('Cheetah', 'Cougar', 'Domestic Cat', 'Hyaena', 'Ocelot', 'Tiger'), ('Cheetah', 'Cougar', 'Dingo', 'Dog', 'Domestic Cat', 'Eastern wolf', 'Hyaena', 'Indian wolf', 'Ocelot', 'Red fox', 'Tiger'), ('Bonobo', 'Chimpanzee', 'Gorilla', 'Human', 'Neanderthal', 'Orangutan'), ('Common clothes moth', 'Housefly', 'Monarch butterfly'), ('African bush elephant', 'Alpine newt', 'American alligator', 'American beaver', 'American black bear', 'American robin', 'Asian black bear', 'Asian lady beetle', 'Bald Eagle', 'Bearded Dragon', 'Bonobo', 'Brown rat', 'Cardinal', 'Cattle', 'Chameleon', 'Cheetah', 'Chimpanzee', 'Chinese giant salamander', 'Chipmunk', 'Common clothes moth', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern newt', 'Eastern wolf', 'Edible frog', 'Eurasian eagle-owl', 'Eurasian golden oriole', 'Fire salamander', 'Fox squirrel', 'Fugu rubripes', 'Giant panda', 'Goldfish', 'Gorilla', 'Gray treefrog', 'Great white shark', 'Guinea pig', 'Horse', 'House mouse', 'Housefly', 'Human', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Koala', 'Malayan porcupine', 'Monarch butterfly', 'Mourning dove', 'Neanderthal', 'Northern giraffe', 'Ocelot', 'Orangutan', 'Platypus', 'Polar bear', 'Red fox', 'Reindeer', 'Russels viper', 'Termite', 'Tiger', 'Virginia opossum', 'Wallaby', 'White rhinoceros', 'White-tailed deer', 'Wild boar'), ('American beaver', 'American black bear', 'Asian black bear', 'Brown rat', 'Cattle', 'Cheetah', 'Chipmunk', 'Cougar', 'Dingo', 'Dog', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern wolf', 'Fox squirrel', 'Giant panda', 'Horse', 'House mouse', 'Hyaena', 'Indian rhinoceros', 'Indian wolf', 'Malayan porcupine', 'Northern giraffe', 'Ocelot', 'Polar bear', 'Red fox', 'Reindeer', 'Tiger', 'Virginia opossum', 'Wallaby', 'White rhinoceros', 'White-tailed deer', 'Wild boar')}
+Partitions in tree1 that were not found in tree2: {('Cheetah', 'Ocelot'), ('Hyaena', 'Tiger'), ('American black bear', 'Brown rat', 'Chipmunk', 'Dog', 'Fox squirrel', 'Giant panda', 'House mouse', 'Red fox'), ('Horse', 'Malayan porcupine', 'Platypus', 'Virginia opossum'), ('Asian black bear', 'Cheetah', 'Hyaena', 'Indian rhinoceros', 'Ocelot', 'Polar bear', 'Tiger', 'White rhinoceros'), ('African bush elephant', 'American alligator', 'Asian lady beetle', 'Bearded Dragon', 'Black garden ant', 'Chameleon', 'Spotted Lanternfly', 'Western honeybee'), ('Alpine newt', 'American beaver', 'Chinese giant salamander', 'Common clothes moth', 'Dolphin', 'Eastern wolf', 'Edible frog', 'Eurasian eagle-owl', 'Eurasian golden oriole', 'Gray treefrog', 'Great white shark', 'Guinea pig', 'Housefly', 'Koala', 'Monarch butterfly', 'Termite'), ('Bald Eagle', 'Gorilla', 'Mourning dove', 'Orangutan'), ('American robin', 'Cardinal', 'Horse', 'Malayan porcupine', 'Northern giraffe', 'Platypus', 'Virginia opossum', 'Wild boar'), ('Alpine newt', 'Chinese giant salamander', 'Great white shark', 'Koala'), ('African bush elephant', 'American alligator'), ('African bush elephant', 'American alligator', 'Asian lady beetle', 'Bearded Dragon', 'Black garden ant', 'Bonobo', 'Cattle', 'Chameleon', 'Chimpanzee', 'Cougar', 'Dingo', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Human', 'Indian wolf', 'Neanderthal', 'Reindeer', 'Russels viper', 'Spotted Lanternfly', 'Wallaby', 'Western honeybee', 'White-tailed deer'), ('Eurasian eagle-owl', 'Eurasian golden oriole'), ('Spotted Lanternfly', 'Western honeybee'), ('Alpine newt', 'Chinese giant salamander'), ('Horse', 'Malayan porcupine'), ('Eastern gray kangaroo', 'Reindeer', 'Wallaby', 'White-tailed deer'), ('Dingo', 'Indian wolf', 'Russels viper'), ('Dolphin', 'Eastern wolf'), ('Bald Eagle', 'Eastern newt', 'Fire salamander', 'Fugu rubripes', 'Goldfish', 'Gorilla', 'Mourning dove', 'Orangutan'), ('Asian lady beetle', 'Black garden ant'), ('American beaver', 'Guinea pig'), ('Bonobo', 'Cattle', 'Chimpanzee', 'Cougar', 'Domestic Cat', 'Domestic Yak', 'Human', 'Neanderthal'), ('Cheetah', 'Indian rhinoceros', 'Ocelot', 'White rhinoceros'), ('American robin', 'Bald Eagle', 'Cardinal', 'Eastern newt', 'Fire salamander', 'Fugu rubripes', 'Goldfish', 'Gorilla', 'Horse', 'Malayan porcupine', 'Mourning dove', 'Northern giraffe', 'Orangutan', 'Platypus', 'Virginia opossum', 'Wild boar'), ('American robin', 'Cardinal', 'Northern giraffe', 'Wild boar'), ('Bonobo', 'Cattle', 'Chimpanzee', 'Domestic Yak'), ('Asian black bear', 'Hyaena', 'Polar bear', 'Tiger'), ('Housefly', 'Termite'), ('American black bear', 'Chipmunk', 'Fox squirrel', 'Giant panda'), ('Brown rat', 'Dog', 'House mouse', 'Red fox'), ('Dog', 'Red fox'), ('Dingo', 'Eastern gray kangaroo', 'Indian wolf', 'Reindeer', 'Russels viper', 'Wallaby', 'White-tailed deer'), ('Northern giraffe', 'Wild boar'), ('American beaver', 'Eurasian eagle-owl', 'Eurasian golden oriole', 'Guinea pig'), ('Dolphin', 'Eastern wolf', 'Edible frog', 'Gray treefrog'), ('African bush elephant', 'Alpine newt', 'American alligator', 'American beaver', 'Asian lady beetle', 'Bearded Dragon', 'Black garden ant', 'Bonobo', 'Cattle', 'Chameleon', 'Chimpanzee', 'Chinese giant salamander', 'Common clothes moth', 'Cougar', 'Dingo', 'Dolphin', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Eastern wolf', 'Edible frog', 'Eurasian eagle-owl', 'Eurasian golden oriole', 'Gray treefrog', 'Great white shark', 'Guinea pig', 'Housefly', 'Human', 'Indian wolf', 'Koala', 'Monarch butterfly', 'Neanderthal', 'Reindeer', 'Russels viper', 'Spotted Lanternfly', 'Termite', 'Wallaby', 'Western honeybee', 'White-tailed deer'), ('American black bear', 'American robin', 'Asian black bear', 'Bald Eagle', 'Brown rat', 'Cardinal', 'Cheetah', 'Chipmunk', 'Dog', 'Eastern newt', 'Fire salamander', 'Fox squirrel', 'Fugu rubripes', 'Giant panda', 'Goldfish', 'Gorilla', 'Horse', 'House mouse', 'Hyaena', 'Indian rhinoceros', 'Malayan porcupine', 'Mourning dove', 'Northern giraffe', 'Ocelot', 'Orangutan', 'Platypus', 'Polar bear', 'Red fox', 'Tiger', 'Virginia opossum', 'White rhinoceros', 'Wild boar'), ('African bush elephant', 'American alligator', 'Bearded Dragon', 'Chameleon'), ('American black bear', 'Giant panda'), ('American black bear', 'Asian black bear', 'Brown rat', 'Cheetah', 'Chipmunk', 'Dog', 'Fox squirrel', 'Giant panda', 'House mouse', 'Hyaena', 'Indian rhinoceros', 'Ocelot', 'Polar bear', 'Red fox', 'Tiger', 'White rhinoceros'), ('Alpine newt', 'Chinese giant salamander', 'Common clothes moth', 'Great white shark', 'Housefly', 'Koala', 'Monarch butterfly', 'Termite'), ('Great white shark', 'Koala'), ('Cougar', 'Domestic Cat', 'Human', 'Neanderthal'), ('Bonobo', 'Cattle', 'Chimpanzee', 'Cougar', 'Dingo', 'Domestic Cat', 'Domestic Yak', 'Eastern gray kangaroo', 'Human', 'Indian wolf', 'Neanderthal', 'Reindeer', 'Russels viper', 'Wallaby', 'White-tailed deer'), ('American beaver', 'Dolphin', 'Eastern wolf', 'Edible frog', 'Eurasian eagle-owl', 'Eurasian golden oriole', 'Gray treefrog', 'Guinea pig'), ('Gorilla', 'Orangutan'), ('Asian lady beetle', 'Black garden ant', 'Spotted Lanternfly', 'Western honeybee'), ('Platypus', 'Virginia opossum')}
+_______________________ test_compare_trees_with_distance _______________________
+
+    def test_compare_trees_with_distance():
+        file_name = f"tree_blosum{BLOSUM}_newick_with_distance.nw"
+        expected_file = os.path.join(expected_folder, file_name)
+        actual_file = os.path.join(actual_folder, file_name)
+>       assert compare_branch_lengths(expected_file_path=expected_file, actual_file_path=actual_file) == []
+
+all_tests.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+newick_compare.py:21: in compare_branch_lengths
+    actual_tree = Tree(actual_file_path)
+/home/joanna/.pyenv/versions/3.11.11/envs/tree_of_life_base/lib/python3.11/site-packages/ete3/coretype/tree.py:212: in __init__
+    read_newick(newick, root_node = self, format=format,
+/home/joanna/.pyenv/versions/3.11.11/envs/tree_of_life_base/lib/python3.11/site-packages/ete3/parser/newick.py:266: in read_newick
+    return _read_newick_from_string(nw, root_node, matcher, format, quoted_names)
+/home/joanna/.pyenv/versions/3.11.11/envs/tree_of_life_base/lib/python3.11/site-packages/ete3/parser/newick.py:334: in _read_newick_from_string
+    _read_node_data(closing_nodes[0], current_parent, "leaf", matcher, formatcode)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+subnw = 'Asian black bear:0:1413', current_node = Tree node '' (0x7f56b1760c5)
+node_type = 'leaf'
+matcher = {'internal': ['support', 'dist', <class 'float'>, <class 'float'>, re.compile('^\\s*(\\s*[+-]?\\d+\\.?\\d*(?:[eE][-+]?...>, re.compile('^\\s*([^():,;]+?)?\\s*(:\\s*[+-]?\\d+\\.?\\d*(?:[eE][-+]?\\d+)?\\s*)?\\s*(\\[&&NHX:[^\\]]*\\])?\\s*$')]}
+formatcode = 0
+
+    def _read_node_data(subnw, current_node, node_type, matcher, formatcode):
+        """ Reads a leaf node from a subpart of the original newick
+        tree """
+    
+        if node_type == "leaf" or node_type == "single":
+            if node_type == "leaf":
+                node = current_node.add_child()
+            else:
+                node = current_node
+        else:
+            node = current_node
+    
+        subnw = subnw.strip()
+    
+        if not subnw and node_type == 'leaf' and formatcode != 100:
+            raise NewickError('Empty leaf node found')
+        elif not subnw:
+            return
+    
+        container1, container2, converterFn1, converterFn2, compiled_matcher = matcher[node_type]
+        data = re.match(compiled_matcher, subnw)
+        if data:
+            data = data.groups()
+            # This prevents ignoring errors even in flexible nodes:
+            if subnw and data[0] is None and data[1] is None and data[2] is None:
+                raise NewickError("Unexpected newick format '%s'" %subnw)
+    
+            if data[0] is not None and data[0] != '':
+                node.add_feature(container1, converterFn1(data[0].strip()))
+    
+            if data[1] is not None and data[1] != '':
+                node.add_feature(container2, converterFn2(data[1][1:].strip()))
+    
+            if data[2] is not None \
+                    and data[2].startswith("[&&NHX"):
+                _parse_extra_features(node, data[2])
+        else:
+>           raise NewickError("Unexpected newick format '%s' " %subnw[0:50])
+E           ete3.parser.newick.NewickError: Unexpected newick format 'Asian black bear:0:1413' 
+E           You may want to check other newick loading flags like 'format' or 'quoted_node_names'.
+
+/home/joanna/.pyenv/versions/3.11.11/envs/tree_of_life_base/lib/python3.11/site-packages/ete3/parser/newick.py:445: NewickError
+____________________________ test_compare_clusters _____________________________
+
+    def test_compare_clusters():
+        file_name = f"clusters_for_blosum{BLOSUM}.json"
+        expected_file = os.path.join(expected_folder, file_name)
+        actual_file = os.path.join(actual_folder, file_name)
+        expected_dict = read_file(expected_file)
+        actual_dict = read_file(actual_file)
+>       assert compare_clusters(expected=expected_dict, actual=actual_dict)=={}
+E       AssertionError: assert {'1100': {'mi...elot'], ...]}} == {}
+E         
+E         Left contains 3 more items:
+E         {'1100': {'missing_clusters': [['African bush elephant',
+E                                         'Alpine newt',
+E                                         'American alligator',
+E                                         'American beaver',
+E                                         'American black bear',...
+E         
+E         ...Full output truncated (6997 lines hidden), use '-vv' to show
+
+all_tests.py:47: AssertionError
+=============================== warnings summary ===============================
+../../../../../../.pyenv/versions/3.11.11/envs/tree_of_life_base/lib/python3.11/site-packages/ete3/webplugin/webapp.py:44
+  /home/joanna/.pyenv/versions/3.11.11/envs/tree_of_life_base/lib/python3.11/site-packages/ete3/webplugin/webapp.py:44: DeprecationWarning: 'cgi' is deprecated and slated for removal in Python 3.13
+    import cgi
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED all_tests.py::test_compare_needleman_wunsch_score - AssertionError: as...
+FAILED all_tests.py::test_valid_newick_with_distance - AssertionError: assert...
+FAILED all_tests.py::test_compare_trees_only_nodes - AssertionError: assert F...
+FAILED all_tests.py::test_compare_trees_with_distance - ete3.parser.newick.Ne...
+FAILED all_tests.py::test_compare_clusters - AssertionError: assert {'1100': ...
+==================== 5 failed, 2 passed, 1 warning in 3.59s ====================
