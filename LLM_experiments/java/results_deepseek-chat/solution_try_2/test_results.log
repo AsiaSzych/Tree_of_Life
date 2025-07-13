@@ -1,0 +1,167 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.11, pytest-8.3.5, pluggy-1.6.0
+rootdir: /home/joanna/Documents/Master_IU/Thesis/Coding task/Tree_of_Life/tests
+plugins: anyio-4.9.0, langsmith-0.3.44
+collected 7 items
+
+all_tests.py F..FFFF                                                     [100%]
+
+=================================== FAILURES ===================================
+_____________________ test_compare_needleman_wunsch_score ______________________
+
+    def test_compare_needleman_wunsch_score():
+        file_name = f"organisms_scores_blosum{BLOSUM}.json"
+        expected_file = os.path.join(expected_folder, file_name)
+        actual_file = os.path.join(actual_folder, file_name)
+        expected_dict = read_file(expected_file)
+        actual_dict = read_file(actual_file)
+>       assert compare_dicts(expected=expected_dict, actual=actual_dict)=={}
+E       AssertionError: assert {'African bus...': 1248}, ...} == {}
+E         
+E         Left contains 2442 more items:
+E         {'African bush elephant_African bush elephant': {'actual': 1431,
+E                                                          'expected': 'missing'},
+E          'African bush elephant_Alpine newt': {'actual': 1174, 'expected': 1167},
+E          'African bush elephant_American alligator': {'actual': 1171, 'expected': 1152},
+E          'African bush elephant_American beaver': {'actual': 1249, 'expected': 1248},...
+E         
+E         ...Full output truncated (2473 lines hidden), use '-vv' to show
+
+all_tests.py:17: AssertionError
+________________________ test_compare_trees_only_nodes _________________________
+
+    def test_compare_trees_only_nodes():
+        file_name = f"tree_blosum{BLOSUM}_newick.nw"
+        expected_file = os.path.join(expected_folder, file_name)
+        actual_file = os.path.join(actual_folder, file_name)
+>       assert compare_trees(expected_file_path=expected_file, actual_file_path=actual_file)
+
+all_tests.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+newick_compare.py:8: in compare_trees
+    score = expected_tree.robinson_foulds(actual_tree)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = Tree node '' (0x7f365bf86c9), t2 = Tree node '' (0x7f365bf86c5)
+attr_t1 = 'name', attr_t2 = 'name', unrooted_trees = False
+expand_polytomies = False, polytomy_size_limit = 5
+skip_large_polytomies = False, correct_by_polytomy_size = False
+min_support_t1 = 0.0, min_support_t2 = 0.0
+
+    def robinson_foulds(self, t2, attr_t1="name", attr_t2="name",
+                        unrooted_trees=False, expand_polytomies=False,
+                        polytomy_size_limit=5, skip_large_polytomies=False,
+                        correct_by_polytomy_size=False, min_support_t1=0.0,
+                        min_support_t2=0.0):
+        """
+        .. versionadded: 2.2
+    
+        Returns the Robinson-Foulds symmetric distance between current
+        tree and a different tree instance.
+    
+        :param t2: reference tree
+    
+        :param name attr_t1: Compare trees using a custom node
+                              attribute as a node name.
+    
+        :param name attr_t2: Compare trees using a custom node
+                              attribute as a node name in target tree.
+    
+        :param False unrooted_trees: If True, consider trees as unrooted.
+    
+        :param False expand_polytomies: If True, all polytomies in the reference
+           and target tree will be expanded into all possible binary
+           trees. Robinson-foulds distance will be calculated between all
+           tree combinations and the minimum value will be returned.
+           See also, :func:`NodeTree.expand_polytomy`.
+    
+        :returns: (rf, rf_max, common_attrs, names, edges_t1, edges_t2,  discarded_edges_t1, discarded_edges_t2)
+    
+        """
+        ref_t = self
+        target_t = t2
+        if not unrooted_trees and (len(ref_t.children) > 2 or len(target_t.children) > 2):
+            raise TreeError("Unrooted tree found! You may want to activate the unrooted_trees flag.")
+    
+        if expand_polytomies and correct_by_polytomy_size:
+            raise TreeError("expand_polytomies and correct_by_polytomy_size are mutually exclusive.")
+    
+        if expand_polytomies and unrooted_trees:
+            raise TreeError("expand_polytomies and unrooted_trees arguments cannot be enabled at the same time")
+    
+    
+        attrs_t1 = set([getattr(n, attr_t1) for n in ref_t.iter_leaves() if hasattr(n, attr_t1)])
+        attrs_t2 = set([getattr(n, attr_t2) for n in target_t.iter_leaves() if hasattr(n, attr_t2)])
+        common_attrs = attrs_t1 & attrs_t2
+        # release mem
+        attrs_t1, attrs_t2 = None, None
+    
+        # Check for duplicated items (is it necessary? can we optimize? what's the impact in performance?')
+        size1 = len([True for n in ref_t.iter_leaves() if getattr(n, attr_t1, None) in common_attrs])
+        size2 = len([True for n in target_t.iter_leaves() if getattr(n, attr_t2, None) in common_attrs])
+        if size1 > len(common_attrs):
+            raise TreeError('Duplicated items found in source tree')
+        if size2 > len(common_attrs):
+>           raise TreeError('Duplicated items found in reference tree')
+E           ete3.coretype.tree.TreeError: 'Duplicated items found in reference tree'
+
+/home/joanna/.pyenv/versions/3.11.11/envs/tree_of_life_base/lib/python3.11/site-packages/ete3/coretype/tree.py:1696: TreeError
+_______________________ test_compare_trees_with_distance _______________________
+
+    def test_compare_trees_with_distance():
+        file_name = f"tree_blosum{BLOSUM}_newick_with_distance.nw"
+        expected_file = os.path.join(expected_folder, file_name)
+        actual_file = os.path.join(actual_folder, file_name)
+>       assert compare_branch_lengths(expected_file_path=expected_file, actual_file_path=actual_file) == []
+E       assert [{'dist1': 9....g_node'}, ...] == []
+E         
+E         Left contains 70 more items, first extra item: {'dist1': 9.0, 'dist2': 1216.0, 'leaves': {'Common clothes moth', 'Monarch butterfly'}, 'message': "Branch length mismatch for node with leaves {'Monarch butterfly', 'Common clothes moth'}: 9.0 vs 1216.0", ...}
+E         Use -v to get more diff
+
+all_tests.py:39: AssertionError
+____________________________ test_compare_clusters _____________________________
+
+    def test_compare_clusters():
+        file_name = f"clusters_for_blosum{BLOSUM}.json"
+        expected_file = os.path.join(expected_folder, file_name)
+        actual_file = os.path.join(actual_folder, file_name)
+        expected_dict = read_file(expected_file)
+        actual_dict = read_file(actual_file)
+>       assert compare_clusters(expected=expected_dict, actual=actual_dict)=={}
+E       AssertionError: assert {'1100': {'mi...'Dog'], ...]}} == {}
+E         
+E         Left contains 3 more items:
+E         {'1100': {'missing_clusters': [['Bearded Dragon', 'Chameleon'],
+E                                        ['African bush elephant',
+E                                         'Alpine newt',
+E                                         'American alligator',
+E                                         'American beaver',...
+E         
+E         ...Full output truncated (13465 lines hidden), use '-vv' to show
+
+all_tests.py:47: AssertionError
+_______________________ test_check_png_file_path_exists ________________________
+
+    def test_check_png_file_path_exists():
+        file_name = f"phylogenetic_tree_blosum{BLOSUM}.png"
+        actual_file = os.path.join(actual_folder, file_name)
+>       assert os.path.exists(actual_file)
+E       AssertionError: assert False
+E        +  where False = <function exists at 0x7f3692b3b560>('../LLM_experiments/java/results_deepseek-chat/solution_try_2/phylogenetic_tree_blosum62.png')
+E        +    where <function exists at 0x7f3692b3b560> = <module 'posixpath' (frozen)>.exists
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+all_tests.py:52: AssertionError
+=============================== warnings summary ===============================
+../../../../../../.pyenv/versions/3.11.11/envs/tree_of_life_base/lib/python3.11/site-packages/ete3/webplugin/webapp.py:44
+  /home/joanna/.pyenv/versions/3.11.11/envs/tree_of_life_base/lib/python3.11/site-packages/ete3/webplugin/webapp.py:44: DeprecationWarning: 'cgi' is deprecated and slated for removal in Python 3.13
+    import cgi
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED all_tests.py::test_compare_needleman_wunsch_score - AssertionError: as...
+FAILED all_tests.py::test_compare_trees_only_nodes - ete3.coretype.tree.TreeE...
+FAILED all_tests.py::test_compare_trees_with_distance - assert [{'dist1': 9.....
+FAILED all_tests.py::test_compare_clusters - AssertionError: assert {'1100': ...
+FAILED all_tests.py::test_check_png_file_path_exists - AssertionError: assert...
+==================== 5 failed, 2 passed, 1 warning in 3.39s ====================
