@@ -1,0 +1,44 @@
+name: PR Analysis with SonarCloud
+
+on:
+  pull_request:
+    branches:
+      - main  # or your default branch
+
+jobs:
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build Java project
+        run: mvn clean install
+
+      - name: SonarCloud analysis
+        uses: sonarsource/sonarcloud-github-action@v2
+        with:
+          organization: your-org-name
+          projectKey: your-project-key
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
