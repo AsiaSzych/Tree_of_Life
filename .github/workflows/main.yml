@@ -28,7 +28,7 @@ jobs:
 
       - name: Build and Test Projects
         run: |
-          for dir in $(find . -maxdepth 2 -type d); do
+          for dir in $(find . -maxdepth 5 -type d); do
             if [ -f "$dir/pom.xml" ]; then
               echo "Building Java project in $dir"
               (cd "$dir" && mvn clean install)
@@ -41,7 +41,9 @@ jobs:
             fi
           done
 
-      - name: SonarCloud Analysis
-        run: sonar-scanner
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@v2
+        with:
+          projectBaseDir: .
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
