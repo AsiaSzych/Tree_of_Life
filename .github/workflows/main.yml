@@ -1,13 +1,12 @@
-name: PR Analysis with SonarCloud
+name: Flexible Multi-Language SonarCloud Analysis
 
 on:
   pull_request:
     branches:
-      - main  # or your default branch
+      - main
 
 jobs:
   sonarcloud:
-    name: SonarCloud
     runs-on: ubuntu-latest
 
     steps:
@@ -19,26 +18,32 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
-          java-version: '21'
+          java-version: '17'
           distribution: 'temurin'
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.10'
 
-      - name: Install Python dependencies
+      - name: Build and Test Projects
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          for dir in $(find . -maxdepth 2 -type d); do
+            if [ -f "$dir/pom.xml" ]; then
+              echo "Building Java project in $dir"
+              (cd "$dir" && mvn clean install)
+            elif [ -f "$dir/requirements.txt" ]; then
+              echo "Testing Python project in $dir"
+              (cd "$dir" && \
+               pip install -r requirements.txt && \
+               pip install pytest pytest-cov && \
+               pytest --cov=src --cov-report=xml)
+            else
+              echo "Skipping $dir — no build config found."
+            fi
+          done
 
-      - name: Build Java project
-        run: mvn clean install
-
-      - name: SonarCloud analysis
-        uses: sonarsource/sonarcloud-github-action@v2
-        with:
-          organization: your-org-name
-          projectKey: your-project-key
+      - name: SonarCloud Analysis
+        run: sonar-scanner
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
