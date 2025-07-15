@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'java_*'  # Trigger on branches starting with java_
+  workflow_dispatch:  # 👈 allows manual runs
 
 jobs:
   sonarcloud:
@@ -18,7 +19,7 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
 
       - name: Install SonarScanner CLI
@@ -27,17 +28,17 @@ jobs:
 
       - name: Find and build each Java subproject
         run: |
-          echo "🔍 Locating Java subprojects with pom.xml files..."
+          echo " Locating Java subprojects with pom.xml files..."
           for pom in $(find LLM_experiments/java -name "pom.xml"); do
             dir=$(dirname "$pom")
-            echo "⚙️ Building $dir"
-            (cd "$dir" && mvn clean install) || echo "❌ Build failed in $dir"
+            echo "Building $dir"
+            (cd "$dir" && mvn clean install) || echo "Build failed in $dir"
           done
 
       - name: Run SonarCloud analysis for each subproject
         run: |
-          echo "🔎 Looking for sonar-project.properties files..."
+          echo "Looking for sonar-project.properties files..."
           for dir in $(find LLM_experiments/java -type f -name sonar-project.properties -exec dirname {} \;); do
-            echo "📂 Running Sonar scan in $dir"
-            (cd "$dir" && sonar-scanner -Dsonar.login=${{ secrets.SONAR_TOKEN }}) || echo "⚠️ Sonar scan failed in $dir"
+            echo "Running Sonar scan in $dir"
+            (cd "$dir" && sonar-scanner -Dsonar.login=${{ secrets.SONAR_TOKEN }}) || echo " Sonar scan failed in $dir !"
           done
