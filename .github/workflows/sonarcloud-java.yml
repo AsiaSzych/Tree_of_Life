@@ -1,0 +1,40 @@
+name: SonarCloud Java Branch Analysis
+
+on:
+  push:
+    branches:
+      - 'java_*'  # Triggers only on branches like java_feature_xyz
+
+jobs:
+  sonarcloud:
+    name: SonarCloud Java Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Required for proper branch diff comparison
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Build all Java projects
+        run: |
+          for pom in $(find . -name "pom.xml"); do
+            dir=$(dirname "$pom")
+            echo "Building $dir"
+            (cd "$dir" && mvn clean install || echo "Build failed in $dir")
+          done
+
+      - name: SonarCloud Analysis
+        uses: sonarsource/sonarcloud-github-action@v2
+        with:
+          projectBaseDir: .
+          args: >
+            -Dsonar.branch.name=${{ github.ref_name }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
