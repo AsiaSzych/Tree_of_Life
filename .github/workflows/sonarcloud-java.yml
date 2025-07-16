@@ -1,0 +1,44 @@
+name: SonarCloud Java Multi-Folder Scan
+
+on:
+  push:
+    branches:
+      - 'java_*'  # Trigger on branches starting with java_
+  workflow_dispatch:  # allows manual runs
+
+jobs:
+  sonarcloud:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Required for proper branch comparison
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Install SonarScanner CLI
+        run: |
+          npm install -g sonar-scanner
+
+      - name: Find and build each Java subproject
+        run: |
+          echo " Locating Java subprojects with pom.xml files..."
+          for pom in $(find LLM_experiments/java -name "pom.xml"); do
+            dir=$(dirname "$pom")
+            echo "Building $dir"
+            (cd "$dir" && mvn clean install) || echo "Build failed in $dir"
+          done
+
+      - name: Run SonarCloud analysis for each subproject
+        run: |
+          echo "Looking for sonar-project.properties files..."
+          for dir in $(find LLM_experiments/java -type f -name sonar-project.properties -exec dirname {} \;); do
+            echo "Running Sonar scan in $dir"
+            (cd "$dir" && sonar-scanner -Dsonar.login=${{ secrets.SONAR_TOKEN }}) || echo " Sonar scan failed in $dir !"
+          done
