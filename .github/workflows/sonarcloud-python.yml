@@ -1,4 +1,4 @@
-
+name: SonarCloud Python Multi-Folder Scan
 
 on:
   push:
