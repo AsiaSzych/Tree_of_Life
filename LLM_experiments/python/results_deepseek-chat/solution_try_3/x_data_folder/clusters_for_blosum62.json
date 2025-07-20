@@ -1,0 +1,333 @@
+{
+    "1100": [
+        [
+            "African bush elephant",
+            "Alpine newt",
+            "American alligator",
+            "American beaver",
+            "American black bear",
+            "American robin",
+            "Asian black bear",
+            "Bald Eagle",
+            "Bonobo",
+            "Brown rat",
+            "Cardinal",
+            "Cattle",
+            "Cheetah",
+            "Chimpanzee",
+            "Chinese giant salamander",
+            "Chipmunk",
+            "Cougar",
+            "Dingo",
+            "Dog",
+            "Dolphin",
+            "Domestic Cat",
+            "Domestic Yak",
+            "Eastern gray kangaroo",
+            "Eastern newt",
+            "Eastern wolf",
+            "Edible frog",
+            "Eurasian eagle-owl",
+            "Eurasian golden oriole",
+            "Fire salamander",
+            "Fox squirrel",
+            "Fugu rubripes",
+            "Giant panda",
+            "Goldfish",
+            "Gorilla",
+            "Gray treefrog",
+            "Great white shark",
+            "Guinea pig",
+            "Horse",
+            "House mouse",
+            "Human",
+            "Hyaena",
+            "Indian rhinoceros",
+            "Indian wolf",
+            "Koala",
+            "Malayan porcupine",
+            "Mourning dove",
+            "Neanderthal",
+            "Northern giraffe",
+            "Ocelot",
+            "Orangutan",
+            "Platypus",
+            "Polar bear",
+            "Red fox",
+            "Reindeer",
+            "Russels viper",
+            "Tiger",
+            "Virginia opossum",
+            "Wallaby",
+            "White rhinoceros",
+            "White-tailed deer",
+            "Wild boar"
+        ],
+        [
+            "Bearded Dragon",
+            "Chameleon"
+        ],
+        [
+            "Asian lady beetle"
+        ],
+        [
+            "Common clothes moth",
+            "Housefly",
+            "Monarch butterfly",
+            "Termite"
+        ],
+        [
+            "Black garden ant"
+        ],
+        [
+            "Spotted Lanternfly"
+        ],
+        [
+            "Western honeybee"
+        ]
+    ],
+    "1260": [
+        [
+            "African bush elephant",
+            "American beaver",
+            "American black bear",
+            "Asian black bear",
+            "Bonobo",
+            "Brown rat",
+            "Cattle",
+            "Cheetah",
+            "Chimpanzee",
+            "Chipmunk",
+            "Cougar",
+            "Dingo",
+            "Dog",
+            "Dolphin",
+            "Domestic Cat",
+            "Domestic Yak",
+            "Eastern gray kangaroo",
+            "Eastern wolf",
+            "Fox squirrel",
+            "Giant panda",
+            "Gorilla",
+            "Guinea pig",
+            "Horse",
+            "House mouse",
+            "Human",
+            "Hyaena",
+            "Indian rhinoceros",
+            "Indian wolf",
+            "Koala",
+            "Malayan porcupine",
+            "Neanderthal",
+            "Northern giraffe",
+            "Ocelot",
+            "Orangutan",
+            "Platypus",
+            "Polar bear",
+            "Red fox",
+            "Reindeer",
+            "Tiger",
+            "Virginia opossum",
+            "Wallaby",
+            "White rhinoceros",
+            "White-tailed deer",
+            "Wild boar"
+        ],
+        [
+            "Alpine newt",
+            "Chinese giant salamander",
+            "Eastern newt",
+            "Edible frog",
+            "Fire salamander",
+            "Fugu rubripes",
+            "Goldfish",
+            "Gray treefrog",
+            "Great white shark"
+        ],
+        [
+            "American robin",
+            "Bald Eagle",
+            "Cardinal",
+            "Eurasian eagle-owl",
+            "Eurasian golden oriole",
+            "Mourning dove"
+        ],
+        [
+            "American alligator"
+        ],
+        [
+            "Russels viper"
+        ],
+        [
+            "Chameleon"
+        ],
+        [
+            "Bearded Dragon"
+        ],
+        [
+            "Monarch butterfly"
+        ],
+        [
+            "Common clothes moth"
+        ],
+        [
+            "Housefly"
+        ],
+        [
+            "Termite"
+        ],
+        [
+            "Asian lady beetle"
+        ],
+        [
+            "Black garden ant"
+        ],
+        [
+            "Spotted Lanternfly"
+        ],
+        [
+            "Western honeybee"
+        ]
+    ],
+    "1350": [
+        [
+            "Eurasian eagle-owl"
+        ],
+        [
+            "Bald Eagle",
+            "Mourning dove"
+        ],
+        [
+            "Eurasian golden oriole"
+        ],
+        [
+            "American robin",
+            "Cardinal"
+        ],
+        [
+            "Chipmunk",
+            "Fox squirrel"
+        ],
+        [
+            "American black bear",
+            "Asian black bear",
+            "Cattle",
+            "Cheetah",
+            "Cougar",
+            "Dingo",
+            "Dog",
+            "Dolphin",
+            "Domestic Cat",
+            "Domestic Yak",
+            "Eastern wolf",
+            "Giant panda",
+            "Horse",
+            "Hyaena",
+            "Indian rhinoceros",
+            "Indian wolf",
+            "Northern giraffe",
+            "Ocelot",
+            "Polar bear",
+            "Red fox",
+            "Reindeer",
+            "Tiger",
+            "White rhinoceros",
+            "White-tailed deer",
+            "Wild boar"
+        ],
+        [
+            "American beaver"
+        ],
+        [
+            "Eastern gray kangaroo",
+            "Virginia opossum",
+            "Wallaby"
+        ],
+        [
+            "Malayan porcupine"
+        ],
+        [
+            "Brown rat",
+            "House mouse"
+        ],
+        [
+            "Guinea pig"
+        ],
+        [
+            "Platypus"
+        ],
+        [
+            "Koala"
+        ],
+        [
+            "Bonobo",
+            "Chimpanzee",
+            "Gorilla",
+            "Human",
+            "Neanderthal",
+            "Orangutan"
+        ],
+        [
+            "African bush elephant"
+        ],
+        [
+            "Fugu rubripes",
+            "Goldfish"
+        ],
+        [
+            "Eastern newt",
+            "Fire salamander"
+        ],
+        [
+            "Great white shark"
+        ],
+        [
+            "Alpine newt"
+        ],
+        [
+            "Gray treefrog"
+        ],
+        [
+            "Edible frog"
+        ],
+        [
+            "Chinese giant salamander"
+        ],
+        [
+            "American alligator"
+        ],
+        [
+            "Russels viper"
+        ],
+        [
+            "Chameleon"
+        ],
+        [
+            "Bearded Dragon"
+        ],
+        [
+            "Monarch butterfly"
+        ],
+        [
+            "Common clothes moth"
+        ],
+        [
+            "Housefly"
+        ],
+        [
+            "Termite"
+        ],
+        [
+            "Asian lady beetle"
+        ],
+        [
+            "Black garden ant"
+        ],
+        [
+            "Spotted Lanternfly"
+        ],
+        [
+            "Western honeybee"
+        ]
+    ]
+}
