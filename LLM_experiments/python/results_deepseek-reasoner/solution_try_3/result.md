@@ -1,1 +1,0 @@
-The results provided by the deepseek API for this run are not usable. Model provided the answer only for 3 out for 14 prompts. For the rest on prompts, API returend empty string in the "content" field where the actual response should be present. In the whole returned response it is visible that the reasoning proces was not finished and al 4096 tokens were used for that.
