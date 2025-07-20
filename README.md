@@ -1,12 +1,14 @@
 # Tree_of_Life
 
 This project is dedicated to solving one of the 
-Nifty Assignments from 2025 - [Building The Tree of Life from Scratch](http://nifty.stanford.edu/2025/tralie-phylogenetic-trees/), created by Dr. Matthew Tralie.
+Nifty Assignments from 2025 - [Building The Tree of Life from Scratch](http://nifty.stanford.edu/2025/tralie-phylogenetic-trees/), created by Christopher Tralie, PhD. 
 
 This assignment explores how to reconstruct and compare phylogenetic trees from DNA sequences, simulating how evolutionary relationships are inferred. The assignment is divided into three logical parts: 
 * computing pairwise genetic distances using Needleman-Wunsh algorithm
 * building phylogenetic trees using single linkage clustering
 * identifying clusters that represent closely related groups
+
+In addition to official scope, I added a task to export create tree to Newick format and save found clusters to text file. 
 
 ## Project assumptions
 The project aims at finding out which of the selected Large Language Models will be the best at solving beforementioned assignment in Python and Java programming languages. To find this out, a set of experiments was preformed.
