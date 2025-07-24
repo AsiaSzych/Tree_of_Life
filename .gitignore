@@ -159,3 +159,4 @@ cython_debug/
 #.idea/
 
 /LLM_experiments/api_keys.json
+/LLM_experiments/sonarcloud/sonar_token.json

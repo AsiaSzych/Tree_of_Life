@@ -1,0 +1,26 @@
+[
+  {
+    "key": "AZgUbtI0BTWju0-q-ydV",
+    "type": "CODE_SMELL",
+    "severity": "MINOR",
+    "component": "AsiaSzych_Tree_of_Life:visualization/dendrogram.py",
+    "line": 17,
+    "message": "Replace the unused local variable \"fig\" with \"_\".",
+    "status": "OPEN",
+    "creationDate": "2025-07-12T17:01:38+0000",
+    "updateDate": "2025-07-16T18:10:38+0000",
+    "rule": "python:S1481"
+  },
+  {
+    "key": "AZgUbtI0BTWju0-q-ydW",
+    "type": "CODE_SMELL",
+    "severity": "MINOR",
+    "component": "AsiaSzych_Tree_of_Life:visualization/dendrogram.py",
+    "line": 41,
+    "message": "Replace this comprehension with passing the iterable to the collection constructor call",
+    "status": "OPEN",
+    "creationDate": "2025-07-12T17:01:38+0000",
+    "updateDate": "2025-07-16T18:10:38+0000",
+    "rule": "python:S7500"
+  }
+]

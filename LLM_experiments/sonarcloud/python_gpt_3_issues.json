@@ -1,0 +1,74 @@
+[
+  {
+    "key": "AZgUZu8JtIFqPLLluMiI",
+    "type": "CODE_SMELL",
+    "severity": "CRITICAL",
+    "component": "AsiaSzych_Tree_of_Life:src/tree.py",
+    "line": 51,
+    "message": "Refactor this function to reduce its Cognitive Complexity from 38 to the 15 allowed.",
+    "status": "OPEN",
+    "creationDate": "2025-07-10T18:16:47+0000",
+    "updateDate": "2025-07-16T18:01:59+0000",
+    "rule": "python:S3776"
+  },
+  {
+    "key": "AZgUZu8JtIFqPLLluMiH",
+    "type": "CODE_SMELL",
+    "severity": "MAJOR",
+    "component": "AsiaSzych_Tree_of_Life:src/tree.py",
+    "line": 72,
+    "message": "Merge this if statement with the enclosing one.",
+    "status": "OPEN",
+    "creationDate": "2025-07-10T18:16:47+0000",
+    "updateDate": "2025-07-16T18:01:59+0000",
+    "rule": "python:S1066"
+  },
+  {
+    "key": "AZgUZu8JtIFqPLLluMiJ",
+    "type": "CODE_SMELL",
+    "severity": "MINOR",
+    "component": "AsiaSzych_Tree_of_Life:src/tree.py",
+    "line": 111,
+    "message": "Remove this redundant call.",
+    "status": "OPEN",
+    "creationDate": "2025-07-10T18:16:47+0000",
+    "updateDate": "2025-07-16T18:01:59+0000",
+    "rule": "python:S7508"
+  },
+  {
+    "key": "AZgUZu8JtIFqPLLluMiL",
+    "type": "CODE_SMELL",
+    "severity": "CRITICAL",
+    "component": "AsiaSzych_Tree_of_Life:src/tree.py",
+    "line": 121,
+    "message": "Refactor this function to reduce its Cognitive Complexity from 16 to the 15 allowed.",
+    "status": "OPEN",
+    "creationDate": "2025-07-10T18:16:47+0000",
+    "updateDate": "2025-07-16T18:01:59+0000",
+    "rule": "python:S3776"
+  },
+  {
+    "key": "AZgUZu8JtIFqPLLluMiK",
+    "type": "CODE_SMELL",
+    "severity": "MINOR",
+    "component": "AsiaSzych_Tree_of_Life:src/tree.py",
+    "line": 138,
+    "message": "Replace the unused local variable \"fig\" with \"_\".",
+    "status": "OPEN",
+    "creationDate": "2025-07-10T18:16:47+0000",
+    "updateDate": "2025-07-16T18:01:59+0000",
+    "rule": "python:S1481"
+  },
+  {
+    "key": "AZgUZu8JtIFqPLLluMiM",
+    "type": "BUG",
+    "severity": "MAJOR",
+    "component": "AsiaSzych_Tree_of_Life:src/tree.py",
+    "line": 142,
+    "message": "This conditional expression returns the same value whether the condition is \"true\" or \"false\".",
+    "status": "OPEN",
+    "creationDate": "2025-07-10T18:16:47+0000",
+    "updateDate": "2025-07-16T18:01:59+0000",
+    "rule": "python:S3923"
+  }
+]

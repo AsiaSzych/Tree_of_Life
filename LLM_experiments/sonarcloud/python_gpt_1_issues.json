@@ -1,0 +1,38 @@
+[
+  {
+    "key": "AZgUWmeF3JRN6fSMPfn1",
+    "type": "CODE_SMELL",
+    "severity": "MAJOR",
+    "component": "AsiaSzych_Tree_of_Life:dendrogram.py",
+    "line": 12,
+    "message": "Remove the unused function parameter \"current_y\".",
+    "status": "OPEN",
+    "creationDate": "2025-07-06T17:29:38+0000",
+    "updateDate": "2025-07-16T17:48:22+0000",
+    "rule": "python:S1172"
+  },
+  {
+    "key": "AZgUWmcD3JRN6fSMPfnz",
+    "type": "CODE_SMELL",
+    "severity": "MAJOR",
+    "component": "AsiaSzych_Tree_of_Life:tree.py",
+    "line": 18,
+    "message": "Extract this nested conditional expression into an independent statement.",
+    "status": "OPEN",
+    "creationDate": "2025-07-06T17:29:38+0000",
+    "updateDate": "2025-07-16T17:48:22+0000",
+    "rule": "python:S3358"
+  },
+  {
+    "key": "AZgUWmcD3JRN6fSMPfn0",
+    "type": "CODE_SMELL",
+    "severity": "CRITICAL",
+    "component": "AsiaSzych_Tree_of_Life:tree.py",
+    "line": 30,
+    "message": "Refactor this function to reduce its Cognitive Complexity from 29 to the 15 allowed.",
+    "status": "OPEN",
+    "creationDate": "2025-07-06T17:29:38+0000",
+    "updateDate": "2025-07-16T17:48:22+0000",
+    "rule": "python:S3776"
+  }
+]

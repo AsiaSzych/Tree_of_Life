@@ -1,0 +1,50 @@
+[
+  {
+    "key": "AZgUd65FvHc_yBlv_96e",
+    "type": "CODE_SMELL",
+    "severity": "MAJOR",
+    "component": "AsiaSzych_Tree_of_Life:src/alignment/test_alignment.py",
+    "line": 42,
+    "message": "Add replacement fields or use a normal string instead of an f-string.",
+    "status": "OPEN",
+    "creationDate": "2025-07-08T18:30:00+0000",
+    "updateDate": "2025-07-16T18:20:16+0000",
+    "rule": "python:S3457"
+  },
+  {
+    "key": "AZgUd64-vHc_yBlv_96c",
+    "type": "CODE_SMELL",
+    "severity": "CRITICAL",
+    "component": "AsiaSzych_Tree_of_Life:src/tree/phylogenetic_tree.py",
+    "line": 116,
+    "message": "Refactor this function to reduce its Cognitive Complexity from 16 to the 15 allowed.",
+    "status": "OPEN",
+    "creationDate": "2025-07-08T18:30:00+0000",
+    "updateDate": "2025-07-16T18:20:16+0000",
+    "rule": "python:S3776"
+  },
+  {
+    "key": "AZgUd64-vHc_yBlv_96d",
+    "type": "CODE_SMELL",
+    "severity": "CRITICAL",
+    "component": "AsiaSzych_Tree_of_Life:src/tree/phylogenetic_tree.py",
+    "line": 194,
+    "message": "Refactor this function to reduce its Cognitive Complexity from 17 to the 15 allowed.",
+    "status": "OPEN",
+    "creationDate": "2025-07-08T18:30:00+0000",
+    "updateDate": "2025-07-16T18:20:16+0000",
+    "rule": "python:S3776"
+  },
+  {
+    "key": "AZgUd62zvHc_yBlv_96b",
+    "type": "CODE_SMELL",
+    "severity": "CRITICAL",
+    "component": "AsiaSzych_Tree_of_Life:src/tree/tree_utils.py",
+    "line": 8,
+    "message": "Refactor this function to reduce its Cognitive Complexity from 17 to the 15 allowed.",
+    "status": "OPEN",
+    "creationDate": "2025-07-08T18:30:00+0000",
+    "updateDate": "2025-07-16T18:20:16+0000",
+    "rule": "python:S3776"
+  }
+]

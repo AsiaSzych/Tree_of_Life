@@ -1,0 +1,74 @@
+[
+  {
+    "key": "AZgUXpj9rx8QXjhIgJtg",
+    "type": "CODE_SMELL",
+    "severity": "CRITICAL",
+    "component": "AsiaSzych_Tree_of_Life:dendrogram_draw.py",
+    "line": 10,
+    "message": "Refactor this function to reduce its Cognitive Complexity from 16 to the 15 allowed.",
+    "status": "OPEN",
+    "creationDate": "2025-07-08T17:38:21+0000",
+    "updateDate": "2025-07-16T17:52:55+0000",
+    "rule": "python:S3776"
+  },
+  {
+    "key": "AZgUXpj9rx8QXjhIgJth",
+    "type": "CODE_SMELL",
+    "severity": "MAJOR",
+    "component": "AsiaSzych_Tree_of_Life:dendrogram_draw.py",
+    "line": 23,
+    "message": "Remove the unused function parameter \"parent_height\".",
+    "status": "OPEN",
+    "creationDate": "2025-07-08T17:38:21+0000",
+    "updateDate": "2025-07-16T17:52:55+0000",
+    "rule": "python:S1172"
+  },
+  {
+    "key": "AZgUXpj9rx8QXjhIgJti",
+    "type": "CODE_SMELL",
+    "severity": "MAJOR",
+    "component": "AsiaSzych_Tree_of_Life:dendrogram_draw.py",
+    "line": 40,
+    "message": "Extract this nested conditional expression into an independent statement.",
+    "status": "OPEN",
+    "creationDate": "2025-07-08T17:38:21+0000",
+    "updateDate": "2025-07-16T17:52:55+0000",
+    "rule": "python:S3358"
+  },
+  {
+    "key": "AZgUXplmrx8QXjhIgJtk",
+    "type": "CODE_SMELL",
+    "severity": "CRITICAL",
+    "component": "AsiaSzych_Tree_of_Life:phylo_tree.py",
+    "line": 28,
+    "message": "Refactor this function to reduce its Cognitive Complexity from 48 to the 15 allowed.",
+    "status": "OPEN",
+    "creationDate": "2025-07-08T17:38:21+0000",
+    "updateDate": "2025-07-16T17:52:55+0000",
+    "rule": "python:S3776"
+  },
+  {
+    "key": "AZgUXplmrx8QXjhIgJtj",
+    "type": "CODE_SMELL",
+    "severity": "MAJOR",
+    "component": "AsiaSzych_Tree_of_Life:phylo_tree.py",
+    "line": 81,
+    "message": "Merge this if statement with the enclosing one.",
+    "status": "OPEN",
+    "creationDate": "2025-07-08T17:38:21+0000",
+    "updateDate": "2025-07-16T17:52:55+0000",
+    "rule": "python:S1066"
+  },
+  {
+    "key": "AZgUXplprx8QXjhIgJtl",
+    "type": "CODE_SMELL",
+    "severity": "MINOR",
+    "component": "AsiaSzych_Tree_of_Life:tree_clustering.py",
+    "line": 8,
+    "message": "Remove this redundant call.",
+    "status": "OPEN",
+    "creationDate": "2025-07-08T17:38:21+0000",
+    "updateDate": "2025-07-16T17:52:55+0000",
+    "rule": "python:S7508"
+  }
+]
