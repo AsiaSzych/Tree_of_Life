@@ -1,0 +1,74 @@
+[
+  {
+    "key": "AZgUckwF1z44Z5TWa4VP",
+    "type": "CODE_SMELL",
+    "severity": "MAJOR",
+    "component": "AsiaSzych_Tree_of_Life:main.py",
+    "line": 63,
+    "message": "Add replacement fields or use a normal string instead of an f-string.",
+    "status": "OPEN",
+    "creationDate": "2025-07-12T17:14:50+0000",
+    "updateDate": "2025-07-16T18:14:25+0000",
+    "rule": "python:S3457"
+  },
+  {
+    "key": "AZgUckv-1z44Z5TWa4VL",
+    "type": "CODE_SMELL",
+    "severity": "CRITICAL",
+    "component": "AsiaSzych_Tree_of_Life:phylogeny/clustering.py",
+    "line": 6,
+    "message": "Refactor this function to reduce its Cognitive Complexity from 16 to the 15 allowed.",
+    "status": "OPEN",
+    "creationDate": "2025-07-12T17:14:50+0000",
+    "updateDate": "2025-07-16T18:14:25+0000",
+    "rule": "python:S3776"
+  },
+  {
+    "key": "AZgUckv-1z44Z5TWa4VM",
+    "type": "CODE_SMELL",
+    "severity": "MINOR",
+    "component": "AsiaSzych_Tree_of_Life:phylogeny/clustering.py",
+    "line": 30,
+    "message": "Remove this redundant call.",
+    "status": "OPEN",
+    "creationDate": "2025-07-12T17:14:50+0000",
+    "updateDate": "2025-07-16T18:14:25+0000",
+    "rule": "python:S7508"
+  },
+  {
+    "key": "AZgUckv-1z44Z5TWa4VN",
+    "type": "CODE_SMELL",
+    "severity": "MINOR",
+    "component": "AsiaSzych_Tree_of_Life:phylogeny/clustering.py",
+    "line": 32,
+    "message": "Remove this redundant call.",
+    "status": "OPEN",
+    "creationDate": "2025-07-12T17:14:50+0000",
+    "updateDate": "2025-07-16T18:14:25+0000",
+    "rule": "python:S7508"
+  },
+  {
+    "key": "AZgUckv-1z44Z5TWa4VO",
+    "type": "CODE_SMELL",
+    "severity": "MINOR",
+    "component": "AsiaSzych_Tree_of_Life:phylogeny/clustering.py",
+    "line": 37,
+    "message": "Remove this redundant call.",
+    "status": "OPEN",
+    "creationDate": "2025-07-12T17:14:50+0000",
+    "updateDate": "2025-07-16T18:14:25+0000",
+    "rule": "python:S7508"
+  },
+  {
+    "key": "AZgUcktx1z44Z5TWa4VK",
+    "type": "CODE_SMELL",
+    "severity": "MINOR",
+    "component": "AsiaSzych_Tree_of_Life:phylogeny/visualization.py",
+    "line": 21,
+    "message": "Replace the unused local variable \"fig\" with \"_\".",
+    "status": "OPEN",
+    "creationDate": "2025-07-12T17:14:50+0000",
+    "updateDate": "2025-07-16T18:14:25+0000",
+    "rule": "python:S1481"
+  }
+]

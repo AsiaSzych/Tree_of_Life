@@ -1,0 +1,14 @@
+[
+  {
+    "key": "AZgUbTTczkc2bqJ1eYhs",
+    "type": "CODE_SMELL",
+    "severity": "MAJOR",
+    "component": "AsiaSzych_Tree_of_Life:main.py",
+    "line": 36,
+    "message": "Add replacement fields or use a normal string instead of an f-string.",
+    "status": "OPEN",
+    "creationDate": "2025-07-12T15:50:57+0000",
+    "updateDate": "2025-07-16T18:08:54+0000",
+    "rule": "python:S3457"
+  }
+]

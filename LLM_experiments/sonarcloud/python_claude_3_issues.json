@@ -1,0 +1,110 @@
+[
+  {
+    "key": "AZgUePtLXSJh34sZvybL",
+    "type": "CODE_SMELL",
+    "severity": "CRITICAL",
+    "component": "AsiaSzych_Tree_of_Life:src/cluster_analyzer.py",
+    "line": 29,
+    "message": "Define a constant instead of duplicating this literal \"thresholds.txt\" 4 times.",
+    "status": "OPEN",
+    "creationDate": "2025-07-12T15:02:01+0000",
+    "updateDate": "2025-07-16T18:21:42+0000",
+    "rule": "python:S1192"
+  },
+  {
+    "key": "AZgUePtLXSJh34sZvybM",
+    "type": "CODE_SMELL",
+    "severity": "MINOR",
+    "component": "AsiaSzych_Tree_of_Life:src/cluster_analyzer.py",
+    "line": 87,
+    "message": "Remove this redundant call.",
+    "status": "OPEN",
+    "creationDate": "2025-07-12T15:02:01+0000",
+    "updateDate": "2025-07-16T18:21:42+0000",
+    "rule": "python:S7508"
+  },
+  {
+    "key": "AZgUePtoXSJh34sZvybS",
+    "type": "CODE_SMELL",
+    "severity": "MINOR",
+    "component": "AsiaSzych_Tree_of_Life:src/dendrogram.py",
+    "line": 67,
+    "message": "Replace the unused local variable \"left_x\" with \"_\".",
+    "status": "OPEN",
+    "creationDate": "2025-07-12T15:02:01+0000",
+    "updateDate": "2025-07-16T18:21:42+0000",
+    "rule": "python:S1481"
+  },
+  {
+    "key": "AZgUePtoXSJh34sZvybT",
+    "type": "CODE_SMELL",
+    "severity": "MINOR",
+    "component": "AsiaSzych_Tree_of_Life:src/dendrogram.py",
+    "line": 68,
+    "message": "Replace the unused local variable \"right_x\" with \"_\".",
+    "status": "OPEN",
+    "creationDate": "2025-07-12T15:02:01+0000",
+    "updateDate": "2025-07-16T18:21:42+0000",
+    "rule": "python:S1481"
+  },
+  {
+    "key": "AZgUePthXSJh34sZvybR",
+    "type": "CODE_SMELL",
+    "severity": "CRITICAL",
+    "component": "AsiaSzych_Tree_of_Life:src/phylogenetic_tree.py",
+    "line": 173,
+    "message": "Define a constant instead of duplicating this literal \"Tree not built yet. Call build_tree() first.\" 3 times.",
+    "status": "OPEN",
+    "creationDate": "2025-07-12T15:02:01+0000",
+    "updateDate": "2025-07-16T18:21:42+0000",
+    "rule": "python:S1192"
+  },
+  {
+    "key": "AZgUePtaXSJh34sZvybQ",
+    "type": "CODE_SMELL",
+    "severity": "MINOR",
+    "component": "AsiaSzych_Tree_of_Life:src/sequence_aligner.py",
+    "line": 152,
+    "message": "Remove this redundant Exception class; it derives from another which is already caught.",
+    "status": "OPEN",
+    "creationDate": "2025-07-12T15:02:01+0000",
+    "updateDate": "2025-07-16T18:21:42+0000",
+    "rule": "python:S5713"
+  },
+  {
+    "key": "AZgUePtTXSJh34sZvybN",
+    "type": "CODE_SMELL",
+    "severity": "MAJOR",
+    "component": "AsiaSzych_Tree_of_Life:src/tree_utils.py",
+    "line": 82,
+    "message": "Remove the unused function parameter \"root\".",
+    "status": "OPEN",
+    "creationDate": "2025-07-12T15:02:01+0000",
+    "updateDate": "2025-07-16T18:21:42+0000",
+    "rule": "python:S1172"
+  },
+  {
+    "key": "AZgUePtTXSJh34sZvybO",
+    "type": "CODE_SMELL",
+    "severity": "MINOR",
+    "component": "AsiaSzych_Tree_of_Life:src/tree_utils.py",
+    "line": 92,
+    "message": "Remove the unused local variable \"issues\".",
+    "status": "OPEN",
+    "creationDate": "2025-07-12T15:02:01+0000",
+    "updateDate": "2025-07-16T18:21:42+0000",
+    "rule": "python:S1481"
+  },
+  {
+    "key": "AZgUePtTXSJh34sZvybP",
+    "type": "CODE_SMELL",
+    "severity": "MAJOR",
+    "component": "AsiaSzych_Tree_of_Life:src/tree_utils.py",
+    "line": 94,
+    "message": "Remove this commented out code.",
+    "status": "OPEN",
+    "creationDate": "2025-07-12T15:02:01+0000",
+    "updateDate": "2025-07-16T18:21:42+0000",
+    "rule": "python:S125"
+  }
+]
